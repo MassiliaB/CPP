@@ -1,15 +1,14 @@
-NAME = phonebook
+NAME = Account
 
-SRCS = $(shell find . -name "*.cpp")
+SRCS = tests.cpp \
 
-OBJS = $(SRCS:.cpp=.o)
+OBJS = $(SRCS:.c=.o)
 
 CC = clang++ -Wall -Wextra -Werror
 
 RM = rm -rf
 
-%.o: %.cpp
-	$(CC) -c $< -o $@
+.o.c = $(CC) -c $< -o ${$<.c=.o}
 
 all: ${NAME}
 
