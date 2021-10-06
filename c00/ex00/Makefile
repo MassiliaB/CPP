@@ -1,4 +1,4 @@
-NAME = account
+NAME = megaphone
 
 SRCS = $(shell find . -name "*.cpp")
 
@@ -18,6 +18,7 @@ ${NAME}: ${OBJS}
 
 clean:
 	@${RM} ${NAME}
+	@${RM} ${OBJS}
 	@echo "$(_RED) Everything was cleaned. $(_END)"
 
 fclean: clean
