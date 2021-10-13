@@ -1,4 +1,6 @@
 #include "Karen.hpp"
+#include <stdio.h>
+enum levnum{ ev, zero, one, two, three };
 
 void	Karen::exec(int i)
 {
@@ -12,24 +14,32 @@ void	Karen::exec(int i)
 
 void Karen::complain( std::string level )
 {
-	static std::map<std::string, int>levels;
-	int		tab[4] = {0, 1, 2, 3};
+	static std::map<std::string, levnum>levels;
 
+	levels["DEBUG"] = zero;
+	levels["INFO"] = one;
+	levels["WARNING"] = two;
+	levels["ERROR"] = three;
 	fct_p[0] = &Karen::debug;
 	fct_p[1] = &Karen::info;
 	fct_p[2] = &Karen::warning;
 	fct_p[3] = &Karen::error;
-
 	switch(levels[level])
 	{
-		case :
+		case zero:
+			printf("yay\n");
 			exec(0);
-		case "INFO":
+			break ;
+		case one:
+			printf("2yay\n");
 			exec(1);
-		case "WARNING":
+			break ;
+		case two:
 			exec(2);
-		case "ERROR":
+			break;
+		case three:
 			exec(3);
+			break ;
 	}
 	return ;
 }
