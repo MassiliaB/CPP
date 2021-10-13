@@ -1,36 +1,36 @@
 #include "Karen.hpp"
 
+void	Karen::exec(int i)
+{
+	while (i < 4)
+	{
+		(this->*(fct_p[i]))();
+		std::cout << this->_level << std::endl ;	
+		i++;
+	}
+}
+
 void Karen::complain( std::string level )
 {
-	//voir switch !!
-	if (level == "DEBUG")
+	static std::map<std::string, int>levels;
+	int		tab[4] = {0, 1, 2, 3};
+
+	fct_p[0] = &Karen::debug;
+	fct_p[1] = &Karen::info;
+	fct_p[2] = &Karen::warning;
+	fct_p[3] = &Karen::error;
+
+	switch(levels[level])
 	{
-		&Karen::debug;
- 		info();
- 		warning();
-		error();
+		case :
+			exec(0);
+		case "INFO":
+			exec(1);
+		case "WARNING":
+			exec(2);
+		case "ERROR":
+			exec(3);
 	}
-	if (level == "INFO")
-	{
-		info();
-		warning();
-		error();
-	}
-	if (level == "WARNING")
-	{
-		warning();
-		error();
-	}
-	if (level == "ERROR")
-	{
-		error();
-	}
-	else
-	{
-		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl ;
-		return;
-	}
-	std::cout << this->_level << std::endl ;	
 	return ;
 }
 

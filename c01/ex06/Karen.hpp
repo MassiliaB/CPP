@@ -3,6 +3,7 @@
 
 # include <iostream>
 # include <iomanip>
+# include <map>
 
 class Karen
 {
@@ -15,7 +16,10 @@ class Karen
 	public:
 		Karen( void );
 		~Karen( void );
+		typedef	void (Karen::*ptr)();
+		ptr		fct_p[4];
 		void complain( std::string level );
+		void exec(int i);
 };
 
 #endif

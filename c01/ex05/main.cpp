@@ -2,21 +2,19 @@
 
 void Karen::complain( std::string level )
 {
-	if (level == "DEBUG")
+	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int	i;
+
+	fct_p[0] = &Karen::debug;
+	fct_p[1] = &Karen::info;
+	fct_p[2] = &Karen::warning;
+	fct_p[3] = &Karen::error;
+	i = 0;
+	while (i < 4)
 	{
-		debug();
-	}
-	if (level == "INFO")
-	{
-		info();
-	}
-	if (level == "WARNING")
-	{
-		warning();
-	}
-	if (level == "ERROR")
-	{
-		error();
+		if (levels[i] == level)
+			(this->*(fct_p[i]))();
+		i++;
 	}
 	std::cout << this->_level << std::endl ;
 	return ;
