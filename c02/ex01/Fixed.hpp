@@ -4,23 +4,24 @@
 # include <iostream>
 # include <iomanip>
 # include <stdlib.h>
+# include <cmath>
 
 class Fixed
 {
 	private:
-		int					_fixedp_nb;
+		int					_int_nb;
+		float				_float_nb;
 		static const int	_raw = 8;
 	public:
-		Fixed();
+		Fixed( void );
+		Fixed(const int nb);
+		Fixed(const float nb);
 		Fixed(const Fixed &copy);
-		Fixed(const int fixed_nb);
-		Fixed(const float fixed_nb);
+		std::ostream &operator<<(const Fixed &copy);
 		Fixed &operator =(const Fixed &copy);
 		~Fixed();
-		int getRawBits( void ) const;
-		int setRawBits( int const raw);
-		float tofloat( void ) const;
+		float toFloat( void ) const;
 		int toInt( void ) const;
- };
+};
 
 #endif

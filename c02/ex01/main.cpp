@@ -1,5 +1,30 @@
 #include "Fixed.hpp"
 
+float   Fixed::toFloat( void ) const
+{
+    float nb;
+
+    nb = _float_nb;
+   // nb = (float)nb << _raw;
+    return (nb);
+}
+
+int Fixed::toInt( void ) const
+{
+    int nb;
+
+    nb = _int_nb;
+
+    nb = nb << _raw;
+    return (nb);
+}
+
+std::ostream &operator << (std::ostream &out, const Fixed &copy) 
+{
+    out << copy;
+    return out;
+}
+
 int main( void ) 
 {   
     Fixed a;
