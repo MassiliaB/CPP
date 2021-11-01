@@ -45,3 +45,24 @@ std::ostream &operator << (std::ostream &out, const Fixed &copy)
     out << copy.toFloat();
     return out;
 }
+
+Fixed &Fixed::operator++()
+{
+	this->_fixedp_nb++;
+	return (*this);
+}
+
+Fixed Fixed::operator++(int nb)
+{
+	this->_fixedp_nb = ++nb;
+	return (*this);
+}
+
+Fixed &Fixed::operator*(const Fixed &copy)
+{
+	return (this->_fixedp_nb * copy._fractionalbits);
+}
+Fixed &Fixed::operator-(const Fixed &copy)
+{
+	return (this->_fixedp_nb - copy._fixedp_nb);
+}

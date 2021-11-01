@@ -1,29 +1,16 @@
 #include "Fixed.hpp"
+#include "stdio.h"
 
 float   Fixed::toFloat( void ) const
 {
-    float nb;
-
-    nb = _float_nb;
-   // nb = (float)nb << _raw;
-    return (nb);
+    return ((float)_fixedp_nb / (float)(1 << _fractionalbits));
 }
 
 int Fixed::toInt( void ) const
 {
-    int nb;
-
-    nb = _int_nb;
-
-    nb = nb << _raw;
-    return (nb);
+    return (_fixedp_nb >> _fractionalbits);
 }
 
-std::ostream &operator << (std::ostream &out, const Fixed &copy) 
-{
-    out << copy;
-    return out;
-}
 
 int main( void ) 
 {   
@@ -33,7 +20,6 @@ int main( void )
     Fixed const d( b );
 
     a = Fixed( 1234.4321f );
-
     std::cout << "a is " << a << std::endl;
     std::cout << "b is " << b << std::endl;
     std::cout << "c is " << c << std::endl;
