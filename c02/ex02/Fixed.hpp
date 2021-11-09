@@ -3,13 +3,14 @@
 
 # include <iostream>
 # include <iomanip>
+# include <stdio.h>
 # include <stdlib.h>
 # include <cmath>
 
 class Fixed
 {
 	private:
-		int					_fixedp_nb;
+		int			_fixedp_nb;
 		static const int	_fractionalbits = 8;
 	public:
 		Fixed( void );
@@ -18,22 +19,30 @@ class Fixed
 		Fixed(const float nb_f);
 		Fixed(const Fixed &copy);
 		Fixed &operator =(const Fixed &copy);
-		static int max(const Fixed &a, const Fixed &b);
-		Fixed &operator >(const Fixed &copy);
-		static int min(const Fixed &a, const Fixed &b);
-		Fixed &operator <(const Fixed &copy);
-		Fixed &operator >=(const Fixed &copy);
-		Fixed &operator <=(const Fixed &copy);
-		Fixed &operator ==(const Fixed &copy);
-		Fixed &operator !=(const Fixed &copy);
-		Fixed &operator +(const Fixed &copy);
-		Fixed &operator -(const Fixed &copy);
-		Fixed &operator *(const Fixed &copy);
-		Fixed &operator /(const Fixed &copy);
-		Fixed &operator++();
-		Fixed operator++(int nb);
-		float toFloat( void ) const;
+		
+                static Fixed max(const Fixed &a, const Fixed &b);
+		static Fixed min(const Fixed &a, const Fixed &b);
+        //comparaison operators 
+		bool operator >(const Fixed &copy);
+		bool operator <(const Fixed &copy);
+		bool operator >=(const Fixed &copy);
+		bool operator <=(const Fixed &copy);
+		bool operator ==(const Fixed &copy);
+		bool operator !=(const Fixed &copy);
+        //arithmetic operators
+		Fixed operator *(const Fixed &copy);
+		Fixed operator /(const Fixed &copy);
+		Fixed operator -(const Fixed &copy);
+		Fixed operator +(const Fixed &copy);
+		Fixed &operator++(); // Overloading the prefix operator
+		Fixed operator++(int); //Overloading the posfix operator
+		Fixed &operator--(); // Overloading the prefix operator
+		Fixed operator--(int nb); //Overloading the posfix operator
+
+                float toFloat( void ) const;
 		int toInt( void ) const;
+                int getRawBits( void ) const;
+		int setRawBits( int const raw);
 };
 std::ostream &operator<<(std::ostream &out, const Fixed &copy);
 

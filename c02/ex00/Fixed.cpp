@@ -18,6 +18,7 @@ Fixed::Fixed(const Fixed &copy)
 	*this = copy;
 	return;
 }
+
 Fixed &Fixed::operator =(const Fixed &copy)
 {
 	std::cout << "Assignation operator called" << std::endl;
