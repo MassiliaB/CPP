@@ -43,7 +43,7 @@ int main(void)
 	srand(time(NULL));
 	while (energy < mrRobot.getEnergy())
 	{
-		mrRobot.attack("F*CK SOCIETY");
+		mrRobot.attack("EVIL CORP");
 		usleep(10000 * 50);
 	
 		damage = rand() % ((mrRobot.getHitpoints() / 2) + 1);
@@ -52,7 +52,7 @@ int main(void)
 		stop += damage;
 		if (stop >= mrRobot.getHitpoints())
 		{
-			std::cout << "\x1B[31m" << "THE END OF F*CK SOCIETY" << "\033[0m"<< std::endl;
+			std::cout << "\x1B[31m" << "THE END OF EVIL CORP" << "\033[0m"<< std::endl;
 			break ;
 		}
 		usleep(10000 * 70);

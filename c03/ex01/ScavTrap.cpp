@@ -1,12 +1,18 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name): _name2(name)
+ScavTrap::ScavTrap( void ) : ClapTrap()
 {
 	_hitpoints = 100;
 	_energypoints = 50;
 	_attackdamage = 20;
-	ClapTrap mrRobot(name);
 	std::cout << "ScavTrap default constructor called" << std::endl;
+}
+ScavTrap::ScavTrap(std::string name): ClapTrap (name)
+{
+	_hitpoints = 100;
+	_energypoints = 50;
+	_attackdamage = 20;
+	std::cout << "ScavTrap constructor called" << std::endl;
 	return;
 }
 
@@ -18,14 +24,7 @@ ScavTrap::~ScavTrap()
 
 ScavTrap::ScavTrap(const ScavTrap &copy)
 {
-	std::cout << "ScavTrap copy constructor called" << std::endl;
 	*this = copy;
+	std::cout << "ScavTrap copy constructor called" << std::endl;
 	return;
 }
-
-/*ScavTrap &ScavTrap::operator =(const ScavTrap &copy)
-{
-	std::cout << "ScavTrap assignation operator called" << std::endl;
-	return *this;
-}
-*/

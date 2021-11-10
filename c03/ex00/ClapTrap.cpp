@@ -14,7 +14,7 @@ ClapTrap::ClapTrap(std::string name): _name(name),  _hitpoints(10), _energypoint
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "F*ck society has been succesfully destructed" << std::endl;
+	std::cout << "EVIL CORP has been succesfully destructed" << std::endl;
 	return;
 }
 
