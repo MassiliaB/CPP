@@ -1,6 +1,12 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap()
+DiamondTrap::DiamondTrap( void ): ClapTrap()
+{
+	std::cout << "Default constructor called" << std::endl;
+	return;
+}
+
+DiamondTrap::DiamondTrap(std::string name): ClapTrap(name)
 {
 	std::cout << "Default constructor called" << std::endl;
 	return;
@@ -18,9 +24,9 @@ DiamondTrap::DiamondTrap(const DiamondTrap &copy)
 	*this = copy;
 	return;
 }
-DiamondTrap &DiamondTrap::operator =(const DiamondTrap &copy)
+/*DiamondTrap &DiamondTrap::operator =(const DiamondTrap &copy)
 {
 	std::cout << "Assignation operator called" << std::endl;
 	return *this;
 }
-
+*/
