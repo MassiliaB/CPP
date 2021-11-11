@@ -1,43 +1,14 @@
-#include "FragTrap.hpp"
+#include "DiamondTrap.hpp"
 
-void	ClapTrap::attack(std::string const & target)
+void DiamondTrap::createName(std::string name )
 {
-	std::cout << this->_name << " attack " << target << ", ";
-}
-
-void	ClapTrap::takeDamage(unsigned int amount)
-{
-	std::cout  << "causing " << "\x1B[91m" << amount << "\033[0m" << " points of damage!" << std::endl;
-}
-
-void	ClapTrap::beRepaired(unsigned int amount)
-{
-	std::cout  << this->_name << " earning " << "\x1B[32m" << amount << "\033[0m" << " points!"  << std::endl;
-}
-
-unsigned int	ClapTrap::getEnergy(void)
-{
-	return (this->_energypoints);
-}
-
-unsigned int	ClapTrap::getDamage(void)
-{
-	return (this->_attackdamage);
-}
-
-unsigned int	ClapTrap::getHitpoints(void)
-{
-	return (this->_hitpoints);
-}
-
-void	FragTrap::highFivesGuys(void)
-{
-	std::cout << _name << " HIGH FIVE TO F*ck SOCIETY!" << std::endl;
+	this->_name = name;
+	return;
 }
 
 int main(void)
 {
-	FragTrap    	mrRobot("MR ROBOT");
+	DiamondTrap    	mrRobot("Mr Robot");
 	unsigned int	energy;
 	unsigned int	damage;
 	unsigned int	stop;
@@ -48,15 +19,15 @@ int main(void)
 	srand(time(NULL));
 	while (energy < mrRobot.getEnergy())
 	{
-		mrRobot.attack("EVIL CORP");
+		mrRobot.attack("EVIL CORP"); //scav
 		usleep(10000 * 50);
 	
 		damage = rand() % ((mrRobot.getHitpoints() / 2) + 1);
 		mrRobot.takeDamage(damage);
-	
 		stop += damage;
 		if (stop >= mrRobot.getHitpoints())
 		{
+			mrRobot.guardGate();
 			std::cout << "\x1B[31m" << "THE END OF EVIL CORP" << "\033[0m"<< std::endl;
 			mrRobot.highFivesGuys();
 			break ;
@@ -66,5 +37,7 @@ int main(void)
 		usleep(10000 * 50);
 		energy++;
 	}
+	std::cout << "\x1B[31m" << "WHO are you ?" << "\033[0m"<< std::endl;
+	mrRobot.whoAmI();
 	return (0);
 }

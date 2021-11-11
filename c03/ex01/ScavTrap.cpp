@@ -28,3 +28,8 @@ ScavTrap::ScavTrap(const ScavTrap &copy)
 	std::cout << "ScavTrap copy constructor called" << std::endl;
 	return;
 }
+
+void	ScavTrap::guardGate(void)
+{
+	std::cout << _name << " have enterred in Gate keeper mode." << std::endl;
+}

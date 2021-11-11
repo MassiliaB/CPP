@@ -20,7 +20,6 @@ class Karen
 		ptr		fct_p[4];
 		void complain( std::string level );
 		void exec(int i);
-		enum numlev { zero, one, two, three, };
 };
 
 #endif

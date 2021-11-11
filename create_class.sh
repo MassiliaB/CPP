@@ -17,23 +17,35 @@ $1::$1()
 	return;
 }
 
-$1::~$1()
-{
-	std::cout << \"Destructor called\" << std::endl;
-	return;
-}
-
 $1::$1(const $1 &copy)
 {
 	std::cout << \"Copy constructor called\" << std::endl;
 	*this = copy;
 	return;
 }
+
+$1::~$1()
+{
+	std::cout << \"Destructor called\" << std::endl;
+	return;
+}
+
 $1 &$1::operator =(const $1 &copy)
 {
+	if ( this != &copy )
+	{
+		this->_value = copy.getValue();
+	}
 	std::cout << \"Assignation operator called\" << std::endl;
 	return *this;
 }
+
+std::ostream &operator<<( std::ostream & o, $1 const &copy )
+{
+	//o << i.getValue();
+	return o;
+}
+
 " > "$1.cpp"
 
 	echo " #ifndef ${class_hpp}_HPP

@@ -8,8 +8,6 @@
 
 class FragTrap : public ClapTrap
 {
-	private:
-		std::string	_name2;
 	public:
 		FragTrap( void );
 		FragTrap( std::string name );
