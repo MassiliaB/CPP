@@ -10,13 +10,15 @@ class Cure: public AMateria
 {
 	protected:
 		std::string const _type;
-		AMateria *_materia;
 	public:
 		Cure();
 		Cure(const Cure&copy);
 		~Cure();
+	
 		Cure &operator =(const Cure &copy);
+
 		AMateria* clone() const;
+		void use(ICharacter& target);
  };
 
 #endif

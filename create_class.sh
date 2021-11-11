@@ -61,8 +61,8 @@ class $1
 	public:
 		$1();
 		$1(const $1&copy);
-		$1 &operator =(const $1 &copy);
 		~$1();
+		$1 &operator =(const $1 &copy);
  };
 
 #endif" > "$1.hpp"

@@ -18,21 +18,3 @@ IMateriaSource::~IMateriaSource()
 	std::cout << "Destructor called" << std::endl;
 	return;
 }
-
-IMateriaSource &IMateriaSource::operator =(const IMateriaSource &copy)
-{
-	if ( this != &copy )
-	{
-		this->_value = copy.getValue();
-	}
-	std::cout << "Assignation operator called" << std::endl;
-	return *this;
-}
-
-std::ostream &operator<<( std::ostream & o, IMateriaSource const &copy )
-{
-	//o << i.getValue();
-	return o;
-}
-
-

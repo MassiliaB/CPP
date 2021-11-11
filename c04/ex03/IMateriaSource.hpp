@@ -4,10 +4,10 @@
 # include <iostream>
 # include <iomanip>
 # include <stdlib.h>
+# include "AMateria.hpp"
 
 class IMateriaSource
 {
-	private:
 	public:
 		virtual ~IMateriaSource() {}
 		virtual void learnMateria(AMateria*) = 0;

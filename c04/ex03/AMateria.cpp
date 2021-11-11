@@ -2,14 +2,13 @@
 
 AMateria::AMateria()
 {
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Materia constructor called" << std::endl;
 	return;
 }
 
-AMateria::AMateria(std::string const &type)
+AMateria::AMateria(std::string const &type): _type(type)
 {
-	this->_type = type;
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Materia constructor called" << std::endl;
 	return;
 }
 
@@ -30,14 +29,7 @@ AMateria &AMateria::operator =(const AMateria &copy)
 {
 	if ( this != &copy )
 	{
-		this->_value = copy.getValue();
 	}
 	std::cout << "Assignation operator called" << std::endl;
 	return *this;
-}
-
-std::ostream &operator<<( std::ostream & o, AMateria const &copy )
-{
-	//o << i.getValue();
-	return o;
 }
