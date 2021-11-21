@@ -5,6 +5,7 @@
 # include <iomanip>
 # include <stdlib.h>
 # include "AMateria.hpp"
+# include "ICharacter.hpp"
 
 class Ice: public AMateria
 {

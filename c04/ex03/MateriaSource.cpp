@@ -1,6 +1,6 @@
 #include "MateriaSource.hpp"
 
-MateriaSource::MateriaSource()
+MateriaSource::MateriaSource(): _nb(0)
 {
 	std::cout << "Materia default constructor called" << std::endl;
 	return;
@@ -30,15 +30,19 @@ MateriaSource &MateriaSource::operator =(const MateriaSource &copy)
 
 void MateriaSource::learnMateria(AMateria* copy)
 {
-	this->_store = copy;
+	if (_nb > 4)
+		return ;
+	this->_materia[_nb] = copy;
+	_nb++;
 	return;	
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-	AMateria *mat = this->_store;
-
-	if (!&type)
-		return (0);
-	return (mat);
+	for (int i = 0; i < 4; i++)
+	{
+		if (type == _materia[i]->getType())
+			return (_materia[i]->clone());
+	}
+	return (0);
 }

@@ -10,8 +10,8 @@ class MateriaSource : public IMateriaSource
 {
 	private:
 		std::string	_type;
-		AMateria **_materia = new AMateria*[4];
-		AMateria *_store;
+		AMateria *_materia[4];
+		int			_nb;
 	public:
 		MateriaSource();
 		MateriaSource(const MateriaSource&copy);
