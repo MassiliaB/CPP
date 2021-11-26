@@ -5,8 +5,8 @@ class_hpp=$(echo $1 | tr '[:lower:]' '[:upper:]')
 
 if [ ! $1 ]
 then
-	echo "1st argument : the name of the class you want to create, don't forget to capitalize the first letter"
-	echo "2nd argument : the name of the directory and subdirectory to put your file in (if not there)"
+	echo "1st argument : the name of the class you want to create"
+	echo "2nd argument : the target directory if not in the current"
 elif [ ! -e $1 ]
 then
 	echo "#include \"$1.hpp\"
@@ -15,13 +15,13 @@ then
 
 $1::$1()
 {
-	std::cout << \"Default constructor called\" << std::endl;
+	std::cout << \"$1 default constructor called\" << std::endl;
 	return;
 }
 
 $1::$1(const $1 &copy)
 {
-	std::cout << \"Copy constructor called\" << std::endl;
+	std::cout << \"$1 copy constructor called\" << std::endl;
 	*this = copy;
 	return;
 }
@@ -30,7 +30,7 @@ $1::$1(const $1 &copy)
 
 $1::~$1()
 {
-	std::cout << \"Destructor called\" << std::endl;
+	std::cout << \"$1 destructor called\" << std::endl;
 	return;
 }
 
@@ -51,8 +51,7 @@ std::ostream &operator<<( std::ostream & o, $1 const &copy )
 	//o << i.getValue();
 	return o;
 }
-/************ METHODS ***************/
-" > "$1.cpp"
+/************ METHODS ***************/" > "$1.cpp"
 
 	echo " #ifndef ${class_hpp}_HPP
 # define ${class_hpp}_HPP
@@ -73,7 +72,7 @@ class $1
 };
 std::ostream &operator<<( std::ostream & o, $1 &copy );
 
-#endif" > "$1.hpp"
+#endif" >  "$1.hpp"
 	echo "$1.cpp and $1.hpp created"
 fi
 
