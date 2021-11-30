@@ -1,25 +1,31 @@
 #include "Weapon.hpp"
 
-Weapon::Weapon( std::string weaponType ): _weaponType(weaponType)
+Weapon::Weapon( void )
 {
-	std::cout << "Creating the weapon " << this->_weaponType << std::endl;
+	std::cout << "Creating the weapon." << std::endl;
+	return ;
+}
+
+Weapon::Weapon( std::string weaponType ): _type(weaponType)
+{
+	std::cout << "Creating the weapon " << this->_type << std::endl;
 	return ;
 }
 
 Weapon::~Weapon(void)
 {
-	std::cout << "Destructing the weapon " << this->_weaponType << std::endl;
+	std::cout << "Destructing the weapon " << this->_type << std::endl;
 	return ;
 }
 
-const	std::string Weapon::getType()
+const	std::string &Weapon::getType()
 {
-	return (this->_weaponType);
+	return (this->_type);
 }
 
-void	Weapon::setType(std::string clubType)
+void	Weapon::setType( const std::string &type )
 {
-	this->_weaponType = clubType;
+	this->_type = type;
 	return ;
 }
 

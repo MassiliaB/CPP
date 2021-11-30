@@ -13,13 +13,13 @@ class Zombie
 		std::string _name;
 
 	public:
-		Zombie(void);
-		~Zombie(void);
-		void announce(void);
+		Zombie( void );
+		Zombie( std::string name );
+		~Zombie( void );
+		void announce( void );
 		Zombie* newZombie(Zombie *zombie, std::string name );
 };
 
-void my_horde( int N, std::string name );
 Zombie* zombieHorde( int N, std::string name );
 
 #endif
