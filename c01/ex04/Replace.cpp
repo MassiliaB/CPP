@@ -10,27 +10,26 @@ Replace::~Replace(void)
 	return ;
 }
 
-void	Replace::replacing(std::string s1, std::string s2, const char *filename)
+void	Replace::replacing(std::string filename, std::string s1, std::string s2)
 {
-	unsigned long	j;
-	std::fstream	output;
+	std::ofstream	file(filename);
+	std::string		ligne;
 
-	j = 0;
-	while (j < sizeof(s1))
-	{
-		s1[j] = s2[j];
-		j++;
-	}
-	s1[j++] = '\0';
-	while (j < sizeof(s2))
-	{
-		s1[j] = '\0';
-		j++;
-	}
-	output.open(filename, std::ios_base::out);
-	if (!output.is_open())
+	if (!file)
 		std::cerr << "failed to open " << filename << std::endl;
-	else
-		output << s1 << std::endl;
+	if (s1 == NULL || s2 == NULL)
+		std::cerr << "Error: empty string." << std::endl;
 
+	while (std::getline(file, ligne))
+	{
+		for (int i = 0; ligne[i]; i++)
+		{
+			while (ligne[i].compare() )
+				i++;
+			if (s1.compare(s2) == 0))
+				break;
+		}
+
+	}
+	file.close();
 }

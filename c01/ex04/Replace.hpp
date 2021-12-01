@@ -11,7 +11,8 @@ class Replace
 	public:
 		Replace(void);
 		~Replace(void);
-		void		replacing(std::string s1, std::string s2, const char *filename);
+
+		void	replacing(std::string filename, std::string s1, std::string s2);
 };
 
 #endif

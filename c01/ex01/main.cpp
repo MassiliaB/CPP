@@ -2,9 +2,13 @@
 
 int	main(void)
 {
-	int			N;
+	Zombie	*zombie;
+	int		N;
 
 	N = 3;
-	my_horde(N, "[Zombie from da hood]");
+ 	zombie = zombieHorde(N, "[Zombies from da hood]");
+	
+	delete[] zombie;
+	
 	return (0);
 }

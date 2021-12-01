@@ -2,14 +2,11 @@
 
 int	main(void)
 {
-	Zombie	zombie;
+	randomChump("Zombie stack");
+	randomChump("Zombie stack stack");
 
-
-	zombie.randomChump("Zombie stack");
-
-	Zombie *zombies = new Zombie;
-	zombies->randomChump("Zombie heap");
-	delete zombies;
-
+	Zombie *zombie2 = new Zombie("Zombie heap");
+	zombie2->announce();
+	delete zombie2;
 	return (0);
 }

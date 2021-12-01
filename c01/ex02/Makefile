@@ -1,4 +1,4 @@
-NAME = zombies
+NAME = brain
 
 SRCS = $(shell find . -name "*.cpp")
 

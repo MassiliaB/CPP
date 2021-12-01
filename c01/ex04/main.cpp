@@ -1,11 +1,11 @@
 #include "Replace.hpp"
 
-int	main(void)
+int	main( int ac, char **av )
 {
 	Replace	replace;
-	const char *filename;
 
-	filename = "file.replace";
-	replace.replacing("coucou", "salut", filename);
-	return (0);
+	if (ac != 3)
+		return 0;
+	replace.replacing(av[1], av[2], av[3] + ".replace");
+	return 0;
 }

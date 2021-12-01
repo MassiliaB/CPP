@@ -1,13 +1,5 @@
 #include "Zombie.hpp"
 
-void	my_horde(int N, std::string name)
-{
-	Zombie *zombie;
-
- 	zombie = zombieHorde(N, name);
-	delete[] zombie;
-}
-
 Zombie* Zombie::newZombie( Zombie *zombie, std::string name )
 {
 	this->_name = name;
@@ -17,10 +9,8 @@ Zombie* Zombie::newZombie( Zombie *zombie, std::string name )
 Zombie* zombieHorde( int N, std::string name )
 {
 	int		i;
-	Zombie	*zombie = NULL;
+	Zombie	*zombie = new Zombie[N];
 
-	if (!(zombie = new Zombie[N]))
-		return (NULL);
 	i = 0;
 	while (i < N)
 	{
