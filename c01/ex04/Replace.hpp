@@ -4,7 +4,7 @@
 # include <iostream>
 # include <iomanip>
 # include <fstream>
-# include <string.h>
+# include <string>
 
 class Replace
 {

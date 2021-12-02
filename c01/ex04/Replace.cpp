@@ -12,24 +12,40 @@ Replace::~Replace(void)
 
 void	Replace::replacing(std::string filename, std::string s1, std::string s2)
 {
-	std::ofstream	file(filename);
+	std::ifstream	srcFile(filename.c_str());
+
+	std::string		nameReplace = filename + ".replace";
+	std::ofstream	destFile(nameReplace.c_str(), std::ios::out);
 	std::string		ligne;
 
-	if (!file)
-		std::cerr << "failed to open " << filename << std::endl;
-	if (s1 == NULL || s2 == NULL)
+	if (!destFile)
+		std::cerr << "failed to create " << nameReplace << std::endl;
+	if (s1 == "" || s2 == "")
 		std::cerr << "Error: empty string." << std::endl;
 
-	while (std::getline(file, ligne))
+	while (std::getline(srcFile, ligne))
 	{
-		for (int i = 0; ligne[i]; i++)
+		int i = 0; 
+		while (ligne[i])
 		{
-			while (ligne[i].compare() )
-				i++;
-			if (s1.compare(s2) == 0))
-				break;
+			if (ligne.compare(i, s1.size(), s1) == 0)
+			{
+				if (s1.compare(s2) == 0)
+					break;
+				else
+				{
+					
+					for (int j = 0; s2[j]; j++)
+					{
+						ligne[i] = s2[j];
+						i++;
+					}
+				}
+			}
+			i++;
 		}
-
+		destFile << ligne << std::endl ;
 	}
-	file.close();
+	destFile.close();
+	srcFile.close();
 }

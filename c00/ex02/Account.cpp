@@ -1,29 +1,48 @@
 #include <iostream>
 #include "Account.hpp"
 
-
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits= 0;
 int Account::_totalNbWithdrawals = 0;
 
+Account::Account( int initial_deposit ): _accountIndex(_nbAccounts), _amount(initial_deposit)
+{
+	_displayTimestamp();
+	std::cout << "index:" << this->_accountIndex << ";";
+	std::cout << "amount:" << this->_amount << ";";
+	std::cout << "created" << std::endl;
+	_nbAccounts++;
+	_totalAmount += this->_amount;
+	return ;
+}
+
+Account::~Account( void )
+{
+	_displayTimestamp();
+	std::cout << "index:" << _accountIndex << ";";
+	std::cout << "amount:" << _amount << ";";
+	std::cout << "closed" << std::endl;
+	return ;
+}
+
 int	Account::checkAmount() const
 {
-	return (Account::_amount);
+	return (_amount);
 }
 
 int	Account::getTotalAmount()
 {
-	return (Account::_totalAmount);
+	return (_totalAmount);
 }
 
 int	Account::getNbWithdrawals()
 {
-	return (Account::_totalNbWithdrawals);
+	return (_totalNbWithdrawals);
 }
 int	Account::getNbDeposits()
 {
-	return (Account::_totalNbDeposits);
+	return (_totalNbDeposits);
 }
 
 void Account::_displayTimestamp()
@@ -31,40 +50,21 @@ void Account::_displayTimestamp()
 	std::cout << "[19920104_091532] ";
 	return ;
 }
-Account::Account(int initial_deposit): _accountIndex(_nbAccounts), _amount(initial_deposit)
-{
-	Account::_displayTimestamp();
-	std::cout << "index:" << this->_accountIndex << ";";
-	std::cout << "amount:" << this->_amount << ";";
-	std::cout << "created" << std::endl;
-	Account::_nbAccounts++;
-	Account::_totalAmount += this->_amount;
-	return ;
-}
-
-Account::~Account(void)
-{
-	Account::_displayTimestamp();
-	std::cout << "index:" << _accountIndex << ";";
-	std::cout << "amount:" << _amount << ";";
-	std::cout << "closed" << std::endl;
-	return ;
-}
  
 void Account::displayAccountsInfos( void )
 {
-	Account::_displayTimestamp();
-	std::cout << "accounts:" << Account::_nbAccounts << ";";
+	_displayTimestamp();
+	std::cout << "accounts:" << _nbAccounts << ";";
 	std::cout << "total:" << getTotalAmount() << ";";
 	std::cout << "deposits:" << getNbDeposits() << ";";
 	std::cout << "withdrawals:" << getNbWithdrawals() << std::endl;
-	Account::_totalAmount = 0;
+	_totalAmount = 0;
 	return ;
 }
 
 void Account::displayStatus( void ) const
 {
-	Account::_displayTimestamp();
+	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";";
 	std::cout << "amount:" << checkAmount() << ";";
 	std::cout << "deposits:" << _nbDeposits << ";";
@@ -74,25 +74,24 @@ void Account::displayStatus( void ) const
 
 void	Account::makeDeposit( int deposit )
 {
-		//	printf("deposit %d\n", deposit);
-	Account::_displayTimestamp();
+	_displayTimestamp();
 	if (_amount < 0)
 		_nbDeposits = 0;
 	_nbDeposits = 1;
 	std::cout << "index:" << _accountIndex << ";";
 	std::cout << "p_amount:" << _amount << ";";
-	std::cout << "deposits:" << deposit << ";";
+	std::cout << "deposit:" << deposit << ";";
 	_amount = _amount + deposit;
 	std::cout << "amount:" << _amount << ";";
 	std::cout << "nb_deposits:" << _nbDeposits << std::endl;
-	Account::_totalAmount += _amount;
-	Account::_totalNbDeposits++;
+	_totalAmount += _amount;
+	_totalNbDeposits++;
 	return ;
 }
 
 bool	Account::makeWithdrawal( int withDrawal )
 {
-	Account::_displayTimestamp();
+	_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";";
 	std::cout << "p_amount:" << checkAmount() << ";";
 	std::cout << "withdrawal:";
@@ -100,16 +99,16 @@ bool	Account::makeWithdrawal( int withDrawal )
 	{
 		std::cout << "refused" << std::endl;
 		_nbWithdrawals = 0;
-		Account::_totalAmount +=  checkAmount();
+		_totalAmount +=  checkAmount();
 		return (0);
 	}
-	Account::_totalAmount +=  checkAmount() - withDrawal;
+	_totalAmount +=  checkAmount() - withDrawal;
 	_nbWithdrawals = 1;
 	_amount = checkAmount() - withDrawal;
 	std::cout << withDrawal << ";";
 	std::cout << "amount:" << _amount << ";";
 	std::cout << "nb_withdrawals:" << _nbWithdrawals << std::endl;
-	Account::_totalNbWithdrawals++;
+	_totalNbWithdrawals++;
 	return (1);
 }
 
