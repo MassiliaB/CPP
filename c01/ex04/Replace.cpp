@@ -18,11 +18,10 @@ void	Replace::replacing(std::string filename, std::string s1, std::string s2)
 	std::ofstream	destFile(nameReplace.c_str(), std::ios::out);
 	std::string		ligne;
 
+	if (!srcFile)
+		std::cout << "failed to open " << filename << std::endl;
 	if (!destFile)
-		std::cerr << "failed to create " << nameReplace << std::endl;
-	if (s1 == "" || s2 == "")
-		std::cerr << "Error: empty string." << std::endl;
-
+		std::cout << "failed to create " << nameReplace << std::endl;
 	while (std::getline(srcFile, ligne))
 	{
 		int i = 0; 
@@ -30,14 +29,15 @@ void	Replace::replacing(std::string filename, std::string s1, std::string s2)
 		{
 			if (ligne.compare(i, s1.size(), s1) == 0)
 			{
-				if (s1.compare(s2) == 0)
-					break ;
 				ligne.erase(i, s1.size());
 				ligne.insert(i, s2);
+				i += s2.size() - 1 ;
 			}
 			i++;
 		}
-		destFile << ligne << std::endl ;
+		destFile << ligne ;
+		if (!srcFile.eof())
+			destFile << std::endl ;
 	}
 	destFile.close();
 	srcFile.close();

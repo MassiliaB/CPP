@@ -23,6 +23,8 @@ void	Karen::setLevel( std::string whatLevel )
 		if (levels[_level] == whatLevel)
 			break ;	
 	}
+	if (_level == 4)
+		std::cout << " ==> Incomprehensive blabla." << std::endl;
 }
 
 void Karen::complain( )
@@ -45,9 +47,6 @@ void Karen::complain( )
 		case 3:
 			exec(3);
 			break ;
-		case 4:
-			std::cout << "INCOMPREHENSIBLE blabla" << std::endl ;
-			break;
 	}
 	return ;
 }
