@@ -31,16 +31,9 @@ void	Replace::replacing(std::string filename, std::string s1, std::string s2)
 			if (ligne.compare(i, s1.size(), s1) == 0)
 			{
 				if (s1.compare(s2) == 0)
-					break;
-				else
-				{
-					
-					for (int j = 0; s2[j]; j++)
-					{
-						ligne[i] = s2[j];
-						i++;
-					}
-				}
+					break ;
+				ligne.erase(i, s1.size());
+				ligne.insert(i, s2);
 			}
 			i++;
 		}
