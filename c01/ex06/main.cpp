@@ -1,54 +1,64 @@
 #include "Karen.hpp"
-#include <stdio.h>
-enum levnum{ ev, zero, one, two, three };
 
 void	Karen::exec(int i)
 {
 	while (i < 4)
 	{
-		(this->*(fct_p[i]))();
-		std::cout << this->_level << std::endl ;	
+		(this->*(_fct_p[i]))();
+		std::cout << this->_what << std::endl ;	
 		i++;
 	}
 }
 
-void Karen::complain( std::string level )
+void	Karen::setLevel( std::string whatLevel )
 {
-	static std::map<std::string, levnum>levels;
+	std::string levels[4];
 
-	levels["DEBUG"] = zero;
-	levels["INFO"] = one;
-	levels["WARNING"] = two;
-	levels["ERROR"] = three;
-	fct_p[0] = &Karen::debug;
-	fct_p[1] = &Karen::info;
-	fct_p[2] = &Karen::warning;
-	fct_p[3] = &Karen::error;		
-	switch(levels[level])
+	levels[0] = "DEBUG";
+	levels[1] = "INFO";
+	levels[2] = "WARNING";
+	levels[3] = "ERROR";
+	for ( ;_level < 4; _level++)
 	{
-		case zero:
-			printf("yay\n");
+		if (levels[_level] == whatLevel)
+			break ;	
+	}
+}
+
+void Karen::complain( )
+{
+	_fct_p[0] = &Karen::debug;
+	_fct_p[1] = &Karen::info;
+	_fct_p[2] = &Karen::warning;
+	_fct_p[3] = &Karen::error;
+	switch(_level)
+	{
+		case 0:
 			exec(0);
 			break ;
-		case one:
-			printf("2yay\n");
+		case 1:
 			exec(1);
 			break ;
-		case two:
+		case 2:
 			exec(2);
 			break;
-		case three:
+		case 3:
 			exec(3);
 			break ;
+		case 4:
+			std::cout << "INCOMPREHENSIBLE blabla" << std::endl ;
+			break;
 	}
 	return ;
 }
 
 int	main(int ac, char **av)
 {
-	Karen	karen;
-
 	if (ac == 2)
-		karen.complain(av[0]);
+	{
+		Karen	karen;
+		karen.setLevel(av[1]);
+		karen.complain();
+	}
 	return (0);
 }

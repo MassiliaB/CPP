@@ -16,7 +16,10 @@ void Karen::complain( std::string level )
 			(this->*(fct_p[i]))();
 		i++;
 	}
-	std::cout << this->_level << std::endl ;
+	if (i == 4)
+		std::cout << "INCOMPREHENSIBLE blabla" << std::endl ;
+	else
+		std::cout << this->_level << std::endl ;
 	return ;
 }
 

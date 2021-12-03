@@ -7,12 +7,12 @@
 # include <algorithm>
 # include <stack>
 
-template <class T>
+template <typename T>
 class MutantStack: public std::stack<T>
 {
 	private:
-		T	*_stack;
-		typedef MutantStack<T>	iterator;
+		T							*_stack;
+		typedef  MutantStack::<T>::iterator	it;
 	public:
 		MutantStack(){
 			*_stack = new T(5);
@@ -23,16 +23,9 @@ class MutantStack: public std::stack<T>
 			*_stack = new T(size);
 			std::stack<T> Stack(_stack);
 		};
-		~MutantStack()
-		{
-			delete[] _stack;
-		};
+		~MutantStack(){ delete[] _stack; };
+		MutantStack::it begin(){ return T.begin(); }
+		MutantStack::it	 end(){ return T.end(); }
 };
-template <class T>
-typename MutantStack::iterator begin()
-{
-	return *T; 
-}
 
 #endif
-
