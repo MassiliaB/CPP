@@ -11,16 +11,14 @@
 template <typename T>
 class MutantStack: public std::stack<T>
 {
-	private:
-		T		*_stack;
-		size_t	_size;
-	public:
-		MutantStack<T>(): _size(0){ };
-		~MutantStack<T>(){ delete[] _stack; };
 
+	public:
+		MutantStack(): std::stack<T>(){ };
+		MutantStack(const MutantStack &copy): std::stack<T>(copy){ };
+		~MutantStack(){ };
 		typedef typename std::deque<T>::iterator iterator;
-		iterator begin();
-		iterator end();
+		iterator begin() { return this->c.begin();}
+		iterator end() { return this->c.end();}
 };
 
 #endif

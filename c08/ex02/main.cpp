@@ -4,11 +4,13 @@ int main()
 {
 	MutantStack<int> mstack;
 
+	std::cout << "Push 5 & 17" << std::endl;
 	mstack.push(5);
 	mstack.push(17);
-	std::cout << mstack.top() << std::endl;
+	std::cout << "\x1B[31m" << "What's on top ? " << "\033[0m" << mstack.top() << std::endl;
 	mstack.pop();
-	std::cout << mstack.size() << std::endl;
+	std::cout << "\x1B[31m" << "Size of the stack: " << "\033[0m" << mstack.size() << std::endl;
+	std::cout << "\x1B[31m" << "Pushing 3, 5, 737, 0" << "\033[0m" << std::endl;
 	mstack.push(3);
 	mstack.push(5);
 	mstack.push(737);
