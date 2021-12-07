@@ -6,6 +6,7 @@
 # include <stdlib.h>
 # include <vector>
 # define INT_MAX 2147483647
+
 class Span
 {
 	private:

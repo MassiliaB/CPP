@@ -42,8 +42,8 @@ Fixed &Fixed::operator =(const Fixed &copy)
 
 std::ostream &operator << (std::ostream &out, const Fixed &copy) 
 {
-    out << copy.toFloat();
-    return out;
+	out << copy.toFloat();
+	return out;
 }
 
 Fixed &Fixed::operator++()
@@ -73,55 +73,97 @@ Fixed Fixed::operator--(int nb)
 
 Fixed Fixed::operator+(const Fixed &copy)
 {
-	return (this->_fixedp_nb + copy._fixedp_nb);
+	return (this->toFloat() + copy.toFloat());
 }
 
 Fixed Fixed::operator*(const Fixed &copy)
 {
-	return (Fixed(toFloat() * copy.toFloat()));
+	return (this->toFloat() * copy.toFloat());
 }
 
 Fixed Fixed::operator-(const Fixed &copy)
 {
-	return (this->_fixedp_nb - copy._fixedp_nb);
+	return (this->toFloat() - copy.toFloat());
 }
 
 Fixed Fixed::operator/(const Fixed &copy)
 {
-//	std::cout << "operator/" << std::endl;
-	return (this->_fixedp_nb / copy._fixedp_nb);
+	return (this->toFloat() / copy.toFloat());
 }
 
 bool Fixed::operator>(const Fixed &copy)
 {
-	return (this->_fixedp_nb > copy._fixedp_nb);
+	return (this->toFloat() > copy.toFloat());
 }
 
 bool Fixed::operator<(const Fixed &copy)
 {
-	return (this->_fixedp_nb < copy._fixedp_nb);
+	return (this->toFloat() < copy.toFloat());
 }
 
 bool Fixed::operator>=(const Fixed &copy)
 {
-	return (this->_fixedp_nb >= copy._fixedp_nb);
-
+	return (this->toFloat() >= copy.toFloat());
 }
 
 bool Fixed::operator<=(const Fixed &copy)
 {
-	return (this->_fixedp_nb <= copy._fixedp_nb);
-	
+	return (this->toFloat() <= copy.toFloat());
 }
+
 bool Fixed::operator==(const Fixed &copy)
 {
-	return (this->_fixedp_nb == copy._fixedp_nb);
-	
+	return (this->toFloat() == copy.toFloat());
 }
 
 bool Fixed::operator!=(const Fixed &copy)
 {
-	return (this->_fixedp_nb != copy._fixedp_nb);
-	
+	return (this->toFloat() != copy.toFloat());
 }
 
+int Fixed::setRawBits(int const raw)
+{
+	return (_fixedp_nb << raw);
+}
+
+int Fixed::getRawBits(void) const
+{
+	return (this->_fixedp_nb);
+}
+
+Fixed &Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+Fixed  &Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}
+
+const Fixed &Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a.getRawBits() < b.getRawBits())
+		return (a);
+	return (b);
+}
+
+const Fixed  &Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a.getRawBits() > b.getRawBits())
+		return (a);
+	return (b);
+}
+
+float   Fixed::toFloat( void ) const
+{
+	return ((float)_fixedp_nb / (float)(1 << _fractionalbits));
+}
+
+int Fixed::toInt( void ) const
+{
+	return (_fixedp_nb >> _fractionalbits);
+}

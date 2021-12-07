@@ -22,6 +22,17 @@ Fixed::Fixed(const Fixed &copy)
 Fixed &Fixed::operator =(const Fixed &copy)
 {
 	std::cout << "Assignation operator called" << std::endl;
-	_fixedp_nb = copy.getRawBits();
+	this->_fixedp_nb = copy.getRawBits();
 	return *this;
+}
+
+int Fixed::setRawBits(int const raw)
+{
+	return (_fixedp_nb << raw);
+}
+
+int Fixed::getRawBits(void) const
+{
+	std::cout << "getRawBits member function called" << std::endl;
+	return (this->_fixedp_nb);
 }

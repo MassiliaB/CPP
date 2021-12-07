@@ -1,20 +1,44 @@
 # include "Serialization.hpp"
 
-
-
-void	init_struct(Data *convert)
+void	Data::print( void )
 {
-	convert->num = 0;
-	convert->numf = 0;
-	convert->numd = 0;
-	convert->scalar = false;
-	convert->c = 0;
+	std::cout << "my data's nb " ;
+	std::cout << this->_nb ;
+	std::cout << "my data's float " ;
+	std::cout << this->_fnb ;
+	std::cout << ", my data's string " ;
+	std::cout << this->_str ;
+	std::cout << "." << std::endl;
 }
 
-int main(int ac, char **av)
+uintptr_t serialize(Data* ptr)
 {
-	Data *data = new Data;
+	return reinterpret_cast<uintptr_t>( ptr );
+}
 
-	init_struct(data);
+Data* deserialize(uintptr_t raw)
+{
+	return reinterpret_cast<Data *>( raw );
+}
+
+int main(void)
+{
+	Data		data;
+	uintptr_t	data_ptr;
+
+	data._nb = 9;
+	data._fnb = 13.4;
+	data._str = "Serialize me";
+
+	std::cout << "Before everithing: \n";
+	data.print();
+
+	data_ptr = serialize(&data);
+	std::cout << "After serialization: " << data_ptr << std::endl;
+
+	Data		*data2 = deserialize(data_ptr);
+	std::cout << "After deserialization: \n";
+	data2->print();
+
 	return (0);
 }
