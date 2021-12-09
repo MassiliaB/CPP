@@ -20,7 +20,7 @@ class Error: public std::exception
 };
 
 template < typename T>
-typename T::iterator easyfind(T &a, int i)
+typename T::iterator easyfind(T const &a, int i)
 {
 	typename T::iterator it;
 

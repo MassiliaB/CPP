@@ -1,16 +1,6 @@
 #include "Fixed.hpp"
 #include "stdio.h"
 
-float   Fixed::toFloat( void ) const
-{
-    return ((float)_fixedp_nb / (float)(1 << _fractionalbits));
-}
-
-int Fixed::toInt( void ) const
-{
-    return (_fixedp_nb >> _fractionalbits);
-}
-
 
 int main( void ) 
 {   
@@ -24,9 +14,20 @@ int main( void )
     std::cout << "b is " << b << std::endl;
     std::cout << "c is " << c << std::endl;
     std::cout << "d is " << d << std::endl;
+
+    std::cout << "\e[1;33m";
     std::cout << "a is " << a.toInt() << " as integer" << std::endl;
     std::cout << "b is " << b.toInt() << " as integer" << std::endl;
     std::cout << "c is " << c.toInt() << " as integer" << std::endl;
     std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+    std::cout << "\e[0m" ;
+
+    std::cout << "\e[1;34m";
+    std::cout << "a is " << a.toFloat() << " as float" << std::endl;
+    std::cout << "b is " << b.toFloat() << " as float" << std::endl;
+    std::cout << "c is " << c.toFloat() << " as float" << std::endl;
+    std::cout << "d is " << d.toFloat() << " as float" << std::endl;
+    std::cout << "\e[0m";
+
     return 0;
 }

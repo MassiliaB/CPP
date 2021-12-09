@@ -16,11 +16,15 @@ int main(void)
 	energy = 0;
 	damage = 0;
 	stop = 0;
+	std::cout << "\x1B[33m" << "At the begining :" << std::endl;
+	std::cout << "-Hit points: "<< mrRobot.getHitpoints() << std::endl;
+	std::cout << "-Energy points: " << mrRobot.getEnergy() << std::endl;
+	std::cout << "-Damage points: " << mrRobot.getDamage() << "\033[0m" << std::endl;
 	srand(time(NULL));
 	while (energy < mrRobot.getEnergy())
 	{
-		mrRobot.attack("EVIL CORP"); //scav
-		usleep(10000 * 50);
+		mrRobot.attack("EVIL CORP"); 
+		usleep(10000 * 10);
 	
 		damage = rand() % ((mrRobot.getHitpoints() / 2) + 1);
 		mrRobot.takeDamage(damage);

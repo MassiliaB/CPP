@@ -20,8 +20,12 @@ class Fixed
 		Fixed(const Fixed &copy);
 		Fixed &operator =(const Fixed &copy);
 		
-                static Fixed max(const Fixed &a, const Fixed &b);
-		static Fixed min(const Fixed &a, const Fixed &b);
+        static Fixed &max(Fixed &a, Fixed &b);
+		static Fixed &min(Fixed &a, Fixed &b);
+
+		static const Fixed &max(const Fixed &a, const Fixed &b);
+		static const Fixed &min(const Fixed &a, const Fixed &b);
+
         //comparaison operators 
 		bool operator >(const Fixed &copy);
 		bool operator <(const Fixed &copy);
@@ -34,16 +38,18 @@ class Fixed
 		Fixed operator /(const Fixed &copy);
 		Fixed operator -(const Fixed &copy);
 		Fixed operator +(const Fixed &copy);
+
 		Fixed &operator++(); // Overloading the prefix operator
 		Fixed operator++(int); //Overloading the posfix operator
 		Fixed &operator--(); // Overloading the prefix operator
-		Fixed operator--(int nb); //Overloading the posfix operator
+		Fixed operator--(int); //Overloading the posfix operator
 
-                float toFloat( void ) const;
+        float toFloat( void ) const;
 		int toInt( void ) const;
-                int getRawBits( void ) const;
-		int setRawBits( int const raw);
+        int getRawBits( void ) const;
+		void setRawBits( int const raw);
 };
+
 std::ostream &operator<<(std::ostream &out, const Fixed &copy);
 
 #endif

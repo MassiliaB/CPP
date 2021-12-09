@@ -2,18 +2,18 @@
 
 FragTrap::FragTrap(void): ClapTrap ()
 {
-	_hitpoints = 100;
-	_energypoints = 100;
-	_attackdamage = 30;
+	this->_hitpoints = 100;
+	this->_energypoints = 100;
+	this->_attackdamage = 30;
 	std::cout << "FragTrap default constructor called" << std::endl;
 	return;
 }
 
 FragTrap::FragTrap(std::string name): ClapTrap (name)
 {
-	_hitpoints = 100;
-	_energypoints = 100;
-	_attackdamage = 30;
+	this->_hitpoints = 100;
+	this->_energypoints = 100;
+	this->_attackdamage = 30;
 	std::cout << "FragTrap constructor called" << std::endl;
 	return;
 }
@@ -31,14 +31,7 @@ FragTrap::FragTrap(const FragTrap &copy)
 	return;
 }
 
-/*FragTrap &FragTrap::operator =(const FragTrap &copy)
-{
-	std::cout << "FragTrap assignation operator called" << std::endl;
-	return *this;
-}
-*/
-
 void	FragTrap::highFivesGuys(void)
 {
-	std::cout << _name << " HIGH FIVE TO F*ck SOCIETY!" << std::endl;
+	std::cout << "\x1B[33m" << this->_name << " HIGH FIVE TO F*ck SOCIETY!" << "\033[0m" << std::endl;
 }

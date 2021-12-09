@@ -25,12 +25,6 @@ ClapTrap::ClapTrap(const ClapTrap &copy)
 	return;
 }
 
-/*mClapTrap &ClapTrap::operator =(const ClapTrap &copy)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	return *this;
-}*/
-
 void	ClapTrap::attack(std::string const & target)
 {
 	std::cout << this->_name << " attack " << target << ", ";

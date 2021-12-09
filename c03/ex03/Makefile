@@ -4,7 +4,7 @@ SRCS = $(shell find . -name "*.cpp")
 
 OBJS = $(SRCS:.cpp=.o)
 
-CC = clang++ -Wall -Wextra -Werror -std=c++98 #-Wshadow and -Wno-shadow
+CC = c++ -Wall -Wextra -Werror -std=c++98 #-Wshadow and -Wno-shadow
 
 RM = rm -rf
 

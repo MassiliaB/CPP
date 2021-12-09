@@ -26,7 +26,7 @@ void Karen::complain( std::string level )
 int	main(void)
 {
 	Karen	karen;
-		
+
 	karen.complain("DEBUG");
 	karen.complain("INFO");
 	karen.complain("WARNING");

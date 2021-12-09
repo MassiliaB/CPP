@@ -15,11 +15,11 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		DiamondTrap( void );
 		DiamondTrap( std::string name );
 		DiamondTrap( const DiamondTrap&copy );
-	//	DiamondTrap &operator =(const DiamondTrap &copy);
 		~DiamondTrap();
-		void whoAmI( void );	
-		void createName( std::string name );	
-		std::string		getDiamondName();
+
+		void		whoAmI( void );	
+		void 		createName( std::string name );	
+		std::string	getDiamondName();
  };
 
 #endif

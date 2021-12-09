@@ -6,26 +6,24 @@
 # include <stdlib.h>
 # include <algorithm>
 # include <stack>
+# include <deque>
 
 template <typename T>
 class MutantStack: public std::stack<T>
 {
-	private:
-		T							*_stack;
-		typedef  MutantStack::<T>::iterator	it;
 	public:
-		MutantStack(){
-			*_stack = new T(5);
-			std::stack<T> Stack(_stack);
-		};
-		MutantStack( int size )
+		MutantStack(){ }
+		MutantStack(const MutantStack<T> &copy){ *this = src; }
+		MutantStack<T>& operator=(const MutantStack<T>& rhs) 
 		{
-			*_stack = new T(size);
-			std::stack<T> Stack(_stack);
-		};
-		~MutantStack(){ delete[] _stack; };
-		MutantStack::it begin(){ return T.begin(); }
-		MutantStack::it	 end(){ return T.end(); }
+			this->c = rhs.c;
+			return *this;
+		}
+		~MutantStack(){ }
+		typedef typename std::stack<T>::iterator iterator;
+
+		iterator begin() { return this->c.begin();}
+		iterator end() { return this->c.end();}
 };
 
 #endif

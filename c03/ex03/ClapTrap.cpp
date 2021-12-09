@@ -2,7 +2,7 @@
 
 ClapTrap::ClapTrap()
 {
-	std::cout << "ClapTrap default constructor called" << std::endl;
+	std::cout << "Claptrap default constructor called" << std::endl;
 	return;
 }
 
@@ -14,22 +14,16 @@ ClapTrap::ClapTrap(std::string name): _name(name),  _hitpoints(10), _energypoint
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Claptrap, EVIL CORP has been succesfully destructed" << std::endl;
+	std::cout << "\x1B[31m" << "EVIL CORP has been succesfully destructed" << "\033[0m" << std::endl;
 	return;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
 {
-	std::cout << "Claptrap copy constructor called" << std::endl;
+	std::cout << "Copy constructor called" << std::endl;
 	*this = copy;
 	return;
 }
-
-/*mClapTrap &ClapTrap::operator =(const ClapTrap &copy)
-{
-	std::cout << "Assignation operator called" << std::endl;
-	return *this;
-}*/
 
 void	ClapTrap::attack(std::string const & target)
 {
@@ -63,5 +57,5 @@ unsigned int	ClapTrap::getHitpoints(void)
 
 std::string	ClapTrap::getName(void)
 {
-	return (this->_name);
+	return this->_name;
 }
