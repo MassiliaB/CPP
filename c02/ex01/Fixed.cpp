@@ -1,14 +1,10 @@
 #include "Fixed.hpp"
 
+const int Fixed::_fractionalbits = 8;
+
 Fixed::Fixed(void): _fixedp_nb(0)
 {
 	std::cout << "Default constructor called" << std::endl;
-	return;
-}
-
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
 	return;
 }
 
@@ -29,7 +25,14 @@ Fixed::Fixed(const float nb)
 Fixed::Fixed(const Fixed &copy)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	*this = copy;
+	if ( this != &copy )
+		*this = copy;
+	return;
+}
+
+Fixed::~Fixed()
+{
+	std::cout << "Destructor called" << std::endl;
 	return;
 }
 
@@ -48,10 +51,10 @@ std::ostream &operator << (std::ostream &out, const Fixed &copy)
 
 float	Fixed::toFloat( void ) const
 {
-	return ((float)_fixedp_nb / (float)(1 << _fractionalbits));
+	return ((float)this->_fixedp_nb / (float)(1 << _fractionalbits));
 }
 
 int		Fixed::toInt( void ) const
 {
-	return (_fixedp_nb >> _fractionalbits);
+	return (this->_fixedp_nb >> _fractionalbits);
 }

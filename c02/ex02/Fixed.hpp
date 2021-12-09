@@ -38,15 +38,16 @@ class Fixed
 		Fixed operator /(const Fixed &copy);
 		Fixed operator -(const Fixed &copy);
 		Fixed operator +(const Fixed &copy);
+
 		Fixed &operator++(); // Overloading the prefix operator
-		Fixed operator++(int nb); //Overloading the posfix operator
+		Fixed operator++(int); //Overloading the posfix operator
 		Fixed &operator--(); // Overloading the prefix operator
-		Fixed operator--(int nb); //Overloading the posfix operator
+		Fixed operator--(int); //Overloading the posfix operator
 
         float toFloat( void ) const;
 		int toInt( void ) const;
         int getRawBits( void ) const;
-		int setRawBits( int const raw);
+		void setRawBits( int const raw);
 };
 
 std::ostream &operator<<(std::ostream &out, const Fixed &copy);
