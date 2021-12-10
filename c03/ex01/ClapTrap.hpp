@@ -11,21 +11,21 @@ class ClapTrap
 {
 	protected:
 		std::string		_name;
-		unsigned int	_hitpoints;
-		unsigned int	_energypoints;
-		unsigned int	_attackdamage;
+		int	_hitpoints;
+		int	_energypoints;
+		int	_attackdamage;
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap&copy);
 		~ClapTrap();
-		void			attack(std::string const & target);
+		void	attack(std::string const & target);
 		void			takeDamage(unsigned int amount);
 		void			beRepaired(unsigned int amount);
 		void			and_open(ClapTrap robot);
-		unsigned int	getEnergy();
-		unsigned int	getDamage();
-		unsigned int	getHitpoints();
+		int	getEnergy();
+		int	getDamage();
+		int	getHitpoints();
  };
 
 

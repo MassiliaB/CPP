@@ -33,3 +33,12 @@ void	ScavTrap::guardGate(void)
 {
 	std::cout << "\x1B[33m" << this->_name << " have enterred in Gate keeper mode." << "\033[0m" << std::endl;
 }
+
+void	ScavTrap::attack(std::string const & target)
+{
+	if (this->_hitpoints < 0)
+		this->_energypoints = 0;
+	std::cout << this->_name << " attackiiing " << target << ", ";
+	this->_attackdamage = rand() / (RAND_MAX / 10) + 1;
+	this->_hitpoints--;
+}

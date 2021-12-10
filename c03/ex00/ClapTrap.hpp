@@ -28,5 +28,4 @@ class ClapTrap
 		unsigned int	getHitpoints();
  };
 
-
 #endif
