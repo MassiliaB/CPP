@@ -27,7 +27,6 @@ int main(void)
 		usleep(10000 * 10);
 		mrRobot.beRepaired(mrRobot.getDamage());
 		evilCorp.beRepaired(evilCorp.getDamage());
-		usleep(10000 * 10);
-	}
+		usleep(10000 * 10);	}
 	return (0);
 }

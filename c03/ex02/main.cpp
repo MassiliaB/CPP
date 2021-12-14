@@ -3,37 +3,42 @@
 int main(void)
 {
 	FragTrap    	mrRobot("MR ROBOT");
-	unsigned int	energy;
-	unsigned int	damage;
-	unsigned int	stop;
+	ClapTrap    	evilCorp("EVIL CORP");
 
-	energy = 0;
-	damage = 0;
-	stop = 0;
-	std::cout << "\x1B[33m" << "At the begining :" << std::endl;
+	srand(time(NULL));
+
+	std::cout << "\x1B[33m" << "At the begining Mr Robot:" << std::endl;
 	std::cout << "-Hit points: "<< mrRobot.getHitpoints() << std::endl;
 	std::cout << "-Energy points: " << mrRobot.getEnergy() << std::endl;
 	std::cout << "-Damage points: " << mrRobot.getDamage() << "\033[0m" << std::endl;
+	std::cout << "\x1B[33m" << "At the begining EvilCorp:" << std::endl;
+	std::cout << "-Hit points: "<< evilCorp.getHitpoints() << std::endl;
+	std::cout << "-Energy points: " << evilCorp.getEnergy() << std::endl;
+	std::cout << "-Damage points: " << evilCorp.getDamage() << "\033[0m" << std::endl;
 	srand(time(NULL));
-	while (energy < mrRobot.getEnergy())
+	while (1)
 	{
 		mrRobot.attack("EVIL CORP");
+		evilCorp.takeDamage(mrRobot.getDamage());
+
 		usleep(10000 * 10);
+
+		evilCorp.attack("MR ROBOT");
+		mrRobot.takeDamage(evilCorp.getDamage());
 	
-		damage = rand() % ((mrRobot.getHitpoints() / 2) + 1);
-		mrRobot.takeDamage(damage);
-	
-		stop += damage;
-		if (stop >= mrRobot.getHitpoints())
-		{
+		if (evilCorp.getEnergy() <= 0){
 			std::cout << "\x1B[31m" << "THE END OF EVIL CORP" << "\033[0m"<< std::endl;
 			mrRobot.highFivesGuys();
 			break ;
 		}
-		usleep(10000 * 70);
-		mrRobot.beRepaired(damage);
-		usleep(10000 * 50);
-		energy++;
+		if (mrRobot.getEnergy() <= 0){
+			std::cout << "\x1B[31m" << "Oh noooo Mr Robot IS DEADDD" << "\033[0m"<< std::endl;	
+			break ;
+		}
+		usleep(10000 * 10);
+		mrRobot.beRepaired(mrRobot.getDamage());
+		evilCorp.beRepaired(evilCorp.getDamage());
+		usleep(10000 * 10);
 	}
 	return (0);
 }

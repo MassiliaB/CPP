@@ -14,7 +14,7 @@ ClapTrap::ClapTrap(std::string name): _name(name),  _hitpoints(10), _energypoint
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << "Claptrap, EVIL CORP has been succesfully destructed" << std::endl;
+	std::cout << "Claptrap : EVIL CORP has been succesfully destructed" << std::endl;
 	return;
 }
 
@@ -27,12 +27,17 @@ ClapTrap::ClapTrap(const ClapTrap &copy)
 
 void	ClapTrap::attack(std::string const & target)
 {
+	if (this->_hitpoints < 0)
+		this->_energypoints = 0;
 	std::cout << this->_name << " attack " << target << ", ";
+	this->_attackdamage = rand() / (RAND_MAX / 20) + 1;
+	this->_hitpoints--;
 }
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	std::cout  << "causing " << "\x1B[91m" << amount << "\033[0m" << " points of damage!" << std::endl;
+	this->_energypoints -= amount;
+	std::cout  << "causing " << "\x1B[91m" << amount << "\033[0m" << " points of damage." << std::endl;
 }
 
 void	ClapTrap::beRepaired(unsigned int amount)
@@ -40,17 +45,17 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	std::cout  << this->_name << " earning " << "\x1B[32m" << amount << "\033[0m" << " points!"  << std::endl;
 }
 
-unsigned int	ClapTrap::getEnergy(void)
+int	ClapTrap::getEnergy(void)
 {
-	return (this->_energypoints);
+	return this->_energypoints;
 }
 
-unsigned int	ClapTrap::getDamage(void)
+int	ClapTrap::getDamage(void)
 {
-	return (this->_attackdamage);
+	return this->_attackdamage;
 }
 
-unsigned int	ClapTrap::getHitpoints(void)
+int	ClapTrap::getHitpoints(void)
 {
-	return (this->_hitpoints);
+	return this->_hitpoints;
 }

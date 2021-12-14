@@ -34,12 +34,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap &copy)
 
 void	DiamondTrap::whoAmI( void )
 {
-	std::cout << "\x1B[34m" << "My Diamond name is " << getDiamondName() << "\033[0m" << std::endl;
+	std::cout << "\x1B[34m" << "My Diamond name is " << this->_name << "\033[0m" << std::endl;
 	std::cout << "\x1B[35m" << "My ClapTrap name is " << getName() << "\033[0m" << std::endl;
 	return;
-}
-
-std::string	DiamondTrap::getDiamondName(void)
-{
-	return this->_name;
 }

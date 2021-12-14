@@ -1,6 +1,6 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap( void ) : ClapTrap()
+ScavTrap::ScavTrap( void )
 {
 	this->_hitpoints = 100;
 	this->_energypoints = 50;
@@ -34,7 +34,17 @@ void	ScavTrap::guardGate(void)
 	std::cout << "\x1B[33m" << this->_name << " have enterred in Gate keeper mode." << "\033[0m" << std::endl;
 }
 
-int	ScavTrap::setEnergyPoints()
+void	ScavTrap::attack(std::string const & target)
 {
-	return this->_energypoints = 50;
+	if (this->_hitpoints < 0)
+		this->_energypoints = 0;
+	std::cout << this->_name << " attackiiing " << target << ", ";
+	this->_attackdamage = rand() / (RAND_MAX / 10) + 1;
+	this->_hitpoints--;
+}
+
+int		ScavTrap::setEnergyPoints()
+{
+	this->_energypoints = 50;
+	return (this->_energypoints);
 }
