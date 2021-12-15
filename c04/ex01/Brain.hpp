@@ -12,8 +12,8 @@ class Brain
 	public:
 		Brain();
 		Brain(const Brain&copy);
-	//	Brain &operator =(const Brain &copy);
 		~Brain();
- };
+		Brain &operator =(const Brain &copy);
+};
 
 #endif

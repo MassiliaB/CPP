@@ -8,15 +8,15 @@
 class Animal
 {
 	protected:
-		std::string _type;
+		std::string	_type;
 	public:
 		Animal();
 		Animal( std::string name );
 		Animal(const Animal&copy);
-		Animal &operator =(const Animal &copy);
-		~Animal();
-		void makeSound() const;
-		std::string getType() const;
+		virtual ~Animal();
+		Animal	&operator =(const Animal &copy);
+		virtual void	makeSound() const;
+		std::string	getType() const;
 };
 
 std::ostream & operator<<(std::ostream &o, Animal const &copy);

@@ -1,9 +1,5 @@
 #include "Animal.hpp"
 
-/*
-** ------------------------------- CONSTRUCTOR --------------------------------
-*/
-
 Animal::Animal(): _type("THE ANIMAL")
 {
 	std::cout << "Animal constructor called" << std::endl;
@@ -12,20 +8,16 @@ Animal::Animal(): _type("THE ANIMAL")
 
 Animal::Animal(std::string name): _type(name)
 {
-	std::cout << "Animal named constructor called" << std::endl;
+	std::cout << "Animal " << _type << " constructor called" << std::endl;
 	return;
 }
 
 Animal::Animal(const Animal &copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Animal copy constructor called" << std::endl;
 	*this = copy;
 	return;
 }
-
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
 
 Animal::~Animal()
 {
@@ -33,15 +25,10 @@ Animal::~Animal()
 	return;
 }
 
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
-
 Animal &Animal::operator =(const Animal &copy)
 {
 	if ( this != &copy )
 		this->_type = copy.getType();
-	std::cout << "Assignation operator called" << std::endl;
 	return *this;
 }
 
@@ -51,10 +38,6 @@ std::ostream & operator<<(std::ostream & o, Animal const &copy )
 	return o;
 }
 
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
-
 std::string	Animal::getType() const
 {
 	return (this->_type);
@@ -62,7 +45,5 @@ std::string	Animal::getType() const
 
 void	Animal::makeSound() const
 {
-	std::cout << "Who let the " << this->_type << " out\n";
-	std::cout << "Who Who Who Who" << std::endl;
 	return;
 }
