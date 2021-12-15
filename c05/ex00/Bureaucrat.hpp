@@ -4,6 +4,16 @@
 # include <iostream>
 # include <iomanip>
 # include <stdlib.h>
+# define BLACK "\x1B[30m"
+# define RED "\x1B[31m"
+# define GREEN "\x1B[32m"
+# define YELLOW "\x1B[33m"
+# define BLUE "\x1B[34m"
+# define MAGENTA "\x1B[35m"
+# define CYAN "\x1B[36m"
+# define WHITE "\x1B[37m"
+# define END "\033[0m"
+
 
 class Bureaucrat
 {
@@ -18,8 +28,24 @@ class Bureaucrat
 	
 		Bureaucrat &operator =(const Bureaucrat &copy);
 	
-		std::string		GradeTooHighException(void) const;
-		std::string		GradeTooLowException(void) const;
+		class GradeTooLowException: public std::exception
+		{
+			private:
+				std::string	_str;
+			public:
+				GradeTooLowException()	throw(): _str("Grade too low !"){}
+				virtual ~GradeTooLowException() throw(){}
+				virtual const char* what() const throw(){ return _str.c_str(); }
+		};
+		class GradeTooHighException: public std::exception
+		{
+			private:
+				std::string	_str;
+			public:
+				GradeTooHighException()	throw(): _str("Grade too high !"){}
+				virtual ~GradeTooHighException() throw(){}
+				virtual const char* what() const throw(){ return _str.c_str(); }
+		};
 		std::string		GetName(void) const;
 		int				GetGrade(void) const;
 		void			IncreaseGrade(void);

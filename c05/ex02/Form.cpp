@@ -1,48 +1,26 @@
 #include "Form.hpp"
 
-/************ CONSTRUCTOR ***************/
-
-Form::Form(): _form("FIRST"), _signed(false), _grade_tosign(1), _grade_toexec(6)
+Form::Form(std::string name, int tosign, int toexec): _form(name), _signed(false), _ok_tosign(tosign), _ok_toexec(toexec)
 {
-	std::cout << "Form default constructor called" << std::endl;
-	return;
-}
-
-Form::Form(std::string name, int tosign, int toexec): _form(name), _signed(false), _grade_tosign(tosign), _grade_toexec(toexec)
-{
-	if (_grade_toexec < 1 || _grade_tosign < 1)
+	if (this->_ok_toexec < 1 || this->_ok_tosign < 1)
 		throw GradeTooHighException();
-	else if (_grade_tosign > 150 || _grade_toexec > 150)
+	else if (this->_ok_tosign > 150 || this->_ok_toexec > 150)
 		throw GradeTooLowException();
-	std::cout << "Form constructor called" << std::endl;
 	return;
 }
 
-Form::Form(const Form &copy): _form("FIRST"), _signed(false), _grade_tosign(1), _grade_toexec(6)
+Form::Form(const Form &copy): _ok_tosign(copy.getSign()), _ok_toexec(copy.getExec())
 {
 	*this = copy;
-	if (_grade_toexec < 1 || _grade_tosign < 1)
-		throw GradeTooHighException();
-	else if (_grade_tosign > 150 || _grade_toexec > 150)
-		throw GradeTooLowException();
-	std::cout << "Form copy constructor called" << std::endl;
 	return;
 }
-/************ DESTRUCTOR ***************/
-
-Form::~Form()
-{
-	std::cout << "Form destructor called" << std::endl;
-	return;
-}
-
-/************ OPERATOR ***************/
 
 Form &Form::operator =(const Form &copy)
 {
 	if ( this != &copy )
+	{
 		this->_signed = copy.isSigned();
-	std::cout << "Assignation operator called" << std::endl;
+	}
 	return *this;
 }
 
@@ -55,32 +33,40 @@ std::ostream &operator<<( std::ostream & o, Form &copy )
 	return o;
 }
 
-/************ METHODS ***************/
 
 std::string Form::getName(void) const
 {
-	return (this->_form);
+	return this->_form;
 }
 
 int Form::isSigned(void) const
 {
-	return (this->_signed);
+	return this->_signed;
 }
 
 void	Form::beSigned(Bureaucrat const &buros)
 {
-	if (buros.getGrade() <= _grade_tosign)
+	if (buros.getGrade() <= this->_ok_tosign)
 		this->_signed = true;
 	else
 		throw GradeTooLowException();
 }
 
-std::string Form::GradeTooHighException(void) const
+int		Form::getSign(void) const
 {
-	return ("Grade too high !");
+	return this->_ok_tosign;
 }
 
-std::string Form::GradeTooLowException(void) const
+int		Form::getExec(void) const
 {
-	return ("Grade too low !");
+	return this->_ok_toexec;
+}
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+{
+	if (!isSigned())
+		return ;
+	if (executor.getGrade() > this->_ok_toexec)
+		throw executor.GradeTooLowException();
+	else
+		create_file();
 }

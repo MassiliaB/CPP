@@ -4,27 +4,28 @@
 int main( void )
 {
 	Bureaucrat Buros("B3", 2);
+	std::cout << GREEN << "Creating a grade " << Buros.getGrade() << " bureaucrate." << END << std::endl;
+	std::cout << Buros << std::endl;
+
 	Form First("F1", 2, 150);
+	std::cout << GREEN << "Creating a form " << First.getSign() << " to be signed and " << First.getExec() << " to be exec."<< END << std::endl;
+
+	Buros.signForm(First);
+	std::cout << First << std::endl;
+	std::cout << std::endl;
 	{
-		std::cout << "\x1B[31m";
+		std::cout << RED << "Trying to create a too low grade bureaucrate :(" << END << std::endl;
 		try
 		{
 			Bureaucrat MiniBuros("Non buros", 151);
 			Form First("form1", 2, 150);
 		}
-		catch (std::string ret)
+		catch (std::exception const &e)
 		{
-			std::cerr << "Exception " << ret << std::endl;
+			std::cerr << e.what() << std::endl;
 		}
-		std::cout << "\033[0m";
 	}
 
-	std::cout << std::endl;
-	std::cout << Buros << std::endl;
-	std::cout << First << std::endl;
-	Buros.signForm(First);
-	std::cout << First << std::endl;
-	std::cout << std::endl;
 
 	return (0);
 }

@@ -9,7 +9,7 @@
 class Form;
 class Bureaucrat
 {
-	protected:
+	private:
 		std::string const	_name;
 		int					_grade;
 	public:
@@ -20,13 +20,29 @@ class Bureaucrat
 	
 		Bureaucrat &operator =(const Bureaucrat &copy);
 	
-		virtual std::string				GradeTooHighException(void) const;
-		virtual std::string				GradeTooLowException(void) const;
-		virtual std::string				getName(void) const;
-		int				getGrade(void) const;
-		void			increaseGrade(void);
-		void 			decreaseGrade(void);	
-		void 			signForm(Form &form );
+		class GradeTooLowException: public std::exception
+		{
+			private:
+				std::string	_str;
+			public:
+				GradeTooLowException()	throw(): _str("Grade too low !"){}
+				virtual ~GradeTooLowException() throw(){}
+				virtual const char* what() const throw(){ return _str.c_str(); }
+		};
+		class GradeTooHighException: public std::exception
+		{
+			private:
+				std::string	_str;
+			public:
+				GradeTooHighException()	throw(): _str("Grade too high !"){}
+				virtual ~GradeTooHighException() throw(){}
+				virtual const char* what() const throw(){ return _str.c_str(); }
+		};
+		std::string			getName(void) const;
+		int					getGrade(void) const;
+		void				increaseGrade(void);
+		void 				decreaseGrade(void);	
+		void 				signForm(Form &form );
 };
 
 std::ostream &operator<<( std::ostream & o, Bureaucrat &copy );

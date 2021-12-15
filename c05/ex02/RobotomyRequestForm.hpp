@@ -1,9 +1,6 @@
  #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
-# include <iostream>
-# include <iomanip>
-# include <stdlib.h>
 # include "Form.hpp"
 
 class RobotomyRequestForm: public Form
@@ -11,7 +8,6 @@ class RobotomyRequestForm: public Form
 	private:
 		std::string	_target;
 	public:
-		RobotomyRequestForm();
 		RobotomyRequestForm( std::string target );
 		RobotomyRequestForm(const RobotomyRequestForm&copy);
 		~RobotomyRequestForm();
