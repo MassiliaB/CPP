@@ -1,51 +1,43 @@
 #include "Dog.hpp"
 
-/*
-** ------------------------------- CONSTRUCTOR --------------------------------
-*/
-
-Dog::Dog()
+Dog::Dog(): Animal("Dog")
 {
-	_type = "Dog";
+	_brain = new Brain();
 	std::cout << "Dog constructor called" << std::endl;
-	this->_brain = new Brain;
 	return;
 }
 
 Dog::Dog(const Dog &copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
-	*this = copy;
-	this->_brain = new Brain;
+	if ( this != &copy )
+		*this = copy;
 	return;
 }
-
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
 
 Dog::~Dog()
 {
-	delete this->_brain;
 	std::cout << "Dog destructor called" << std::endl;
+	delete _brain;
 	return;
 }
 
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
-
 Dog &Dog::operator =(const Dog &copy)
 {
-	if ( this != &copy )
-	{
+	if ( this != &copy ){
+		this->_brain = copy._brain;
 		this->_type = copy.getType();
-		_brain = copy._brain;
 	}
-	std::cout << "Dog assignation operator called" << std::endl;
 	return *this;
 }
 
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
+void	Dog::makeSound() const
+{
+	std::cout << "Who let the Dog out\n";
+	std::cout << "  [Who Who Who Who]" << std::endl;
+	return;
+}
+
+Brain *Dog::getBrain( )
+{
+	return this->_brain;
+}

@@ -4,6 +4,7 @@
 # include <iostream>
 # include <iomanip>
 # include <stdlib.h>
+# include "Brain.hpp"
 
 class Animal
 {
@@ -15,8 +16,9 @@ class Animal
 		Animal(const Animal&copy);
 		virtual ~Animal();
 		Animal	&operator =(const Animal &copy);
+		std::string		getType() const;
 		virtual void	makeSound() const;
-		std::string	getType() const;
+		virtual Brain	*getBrain();
 };
 
 std::ostream & operator<<(std::ostream &o, Animal const &copy);

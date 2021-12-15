@@ -2,23 +2,20 @@
 
 Character::Character(): _name("Best character")
 {
-	std::cout << "Character constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		_materia[i] = NULL;
+		this->_materia[i] = NULL;
 	return;
 }
 
 Character::Character(std::string name): _name(name)
 {
-	std::cout << "Character constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
-		_materia[i] = NULL;
+		this->_materia[i] = NULL;
 	return;
 }
 
 Character::Character(const Character &copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = copy;
 	return;
 }
@@ -26,8 +23,9 @@ Character::Character(const Character &copy)
 Character::~Character()
 {
 	std::cout << "Character destructor called" << std::endl;
-	for (int i = 0; i < 4 ; i++)
-			delete _materia[i];
+	for (int i(0); i < 4; i++)
+		if (this->_materia[i])
+			delete this->_materia[i];
 	return;
 }
 
@@ -44,37 +42,39 @@ Character &Character::operator =(const Character &copy)
 				this->_materia[i] = copy._materia[i]->clone();
 		}
 	}
-	std::cout << "Assignation operator called" << std::endl;
 	return *this;
 }
 
 std::string const &Character::getName() const
 {
-	return (this->_name);
+	return this->_name;
 }
-
 
 void Character::use(int idx, ICharacter& target)
 {
-	if (idx > 3 || !_materia[idx])
+	if (idx > 3 || idx < 0 || !this->_materia[idx])
+	{
+		std::cout << "* Can't use an unexistant [" << idx << "] materia *" << std::endl;
 		return;
-	_materia[idx]->use(target);
+	}
+	this->_materia[idx]->use(target);
 }
 
 void Character::unequip(int idx)
 {
-	if (idx > 3 || !_materia[idx])
+	if (idx > 3 || idx < 0 || !this->_materia[idx])
+	{
+		std::cout << "Can't unequip an unexistant materia" << std::endl;
 		return;
-	delete _materia[idx];
+	}
+	_materia[idx] = 0;
 }
 
 void Character::equip(AMateria* m)
 {
-	if (!m)
-		return;
-	for (int i = 0; i < 4; i++)
-	{
-		if (_materia[i] == NULL)
-			_materia[i] = m;
-	}
+	int i = 0;
+	for (; i < 4 && this->_materia[i] ; i++)
+		;
+	if (this->_materia[i] == NULL)
+		this->_materia[i] = m;
 }

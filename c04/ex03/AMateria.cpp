@@ -1,35 +1,34 @@
 #include "AMateria.hpp"
 
-AMateria::AMateria()
+AMateria::AMateria(): _type("")
 {
-	std::cout << "Materia constructor called" << std::endl;
 	return;
 }
 
 AMateria::AMateria(std::string const &type): _type(type)
 {
-	std::cout << "Materia constructor called" << std::endl;
 	return;
 }
 
 AMateria::AMateria(const AMateria &copy)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = copy;
 	return;
 }
 
-AMateria::~AMateria()
-{
-	std::cout << "Destructor called" << std::endl;
-	return;
-}
-
-AMateria &AMateria::operator =(const AMateria &copy)
+AMateria &AMateria::operator=( AMateria const &copy)
 {
 	if ( this != &copy )
-	{
-	}
-	std::cout << "Assignation operator called" << std::endl;
+		this->_type = copy.getType();
 	return *this;
+}
+
+std::string const &AMateria::getType() const
+{
+	return this->_type;
+}
+
+void AMateria::use(ICharacter& target)
+{
+	std::cout << this->_type << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }

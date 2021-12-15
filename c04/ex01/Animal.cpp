@@ -47,3 +47,8 @@ void	Animal::makeSound() const
 {
 	return;
 }
+
+Brain *Animal::getBrain( )
+{
+	return NULL;
+}

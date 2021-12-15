@@ -29,6 +29,6 @@ Dog &Dog::operator =(const Dog &copy)
 void	Dog::makeSound() const
 {
 	std::cout << "Who let the Dog out\n";
-	std::cout << "Who Who Who Who" << std::endl;
+	std::cout << "  [Who Who Who Who]" << std::endl;
 	return;
 }

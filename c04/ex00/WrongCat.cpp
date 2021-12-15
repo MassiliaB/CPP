@@ -15,7 +15,7 @@ WrongCat::WrongCat(const WrongCat &copy)
 
 WrongCat::~WrongCat()
 {
-	std::cout << "WrongCat destructor called" << std::endl;
+	std::cout << "Wrong Cat destructor called" << std::endl;
 	return;
 }
 
@@ -29,6 +29,6 @@ WrongCat &WrongCat::operator =(const WrongCat &copy)
 void	WrongCat::makeSound() const
 {
 	std::cout << "Who let the WrongCat out\n";
-	std::cout << "Who Who Who Who" << std::endl;
+	std::cout << "  [Wrong wrong wrong wrong]" << std::endl;
 	return;
 }

@@ -1,9 +1,5 @@
 #include "Brain.hpp"
 
-/*
-** ------------------------------- CONSTRUCTOR --------------------------------
-*/
-
 Brain::Brain()
 {
 	std::cout << "Brain constructor called" << std::endl;
@@ -19,38 +15,28 @@ Brain::Brain(const Brain &copy)
 	return;
 }
 
-/*
-** -------------------------------- DESTRUCTOR --------------------------------
-*/
-
 Brain::~Brain()
 {
 	std::cout << "Brain destructor called" << std::endl;
 	return;
 }
 
-/*
-** --------------------------------- OVERLOAD ---------------------------------
-*/
-
 Brain &Brain::operator =(const Brain &copy)
 {
 	if ( this != &copy )
 	{
-		for (int i = 0; i < 100; i++)
-			copy._ideas[i] + "";
+		for (int i(0); i < 100 ; i++)
+			this->_ideas[i] = copy._ideas[i];
 	}
-	std::cout << "Assignation operator called" << std::endl;
 	return *this;
 }
-/*
-std::ostream	&operator<<( std::ostream & o, Brain const &copy )
-{
-	o << copy.getIdeas();
-	return o;
-}
-*/
 
-/*
-** --------------------------------- METHODS ----------------------------------
-*/
+void	Brain::setIdeas( std::string idea, int n )
+{
+	this->_ideas[n] = idea;
+}
+
+void	Brain::getIdeas( int n )
+{
+	std::cout << _ideas[n] << std::endl;
+}

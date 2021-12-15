@@ -17,6 +17,7 @@ class Cat: public Animal
 		~Cat();
 		Cat &operator =(const Cat &copy);
 		void	makeSound() const;
- };
+		Brain	*getBrain();
+};
 
 #endif

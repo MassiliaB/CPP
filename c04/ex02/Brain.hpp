@@ -12,8 +12,10 @@ class Brain
 	public:
 		Brain();
 		Brain(const Brain&copy);
-		Brain &operator =(const Brain &copy);
 		~Brain();
+		Brain &operator =( const Brain &copy );
+		void	setIdeas( std::string idea, int n );
+		void	getIdeas( int n );
 };
 
 #endif

@@ -1,6 +1,6 @@
 #include "Cat.hpp"
 
-Cat::Cat(): Animal()
+Cat::Cat(): Animal("Cat")
 {
 	_brain = new Brain();
 	std::cout << "Cat constructor called" << std::endl;
@@ -33,6 +33,11 @@ Cat &Cat::operator =(const Cat &copy)
 void	Cat::makeSound() const
 {
 	std::cout << "Who let the Cat out\n";
-	std::cout << "Who Who Who Who" << std::endl;
+	std::cout << "  [Miaou miaou miaou miaou]" << std::endl;
 	return;
+}
+
+Brain *Cat::getBrain( )
+{
+	return this->_brain;
 }
