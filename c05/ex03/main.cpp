@@ -7,54 +7,43 @@
 
 int main( void )
 {
-		std::cout << CYAN;
-		Bureaucrat Buros("B3", 2);
-		std::cout << std::endl;
-		std::cout << END;
-	{
-		std::cout << GREEN;
-		ShrubberyCreationForm First("Shi");
+	Intern someRandomIntern;
+	std::cout << GREEN << "Creating some rondom intern" << END << std::endl;
 
-		std::cout << Buros << std::endl;
-		std::cout << First << std::endl;
-		Buros.signForm(First);
-		Buros.executeForm(First);
-		std::cout << First << std::endl;
-	}
-		std::cout << END;
-		std::cout << std::endl;
-	{
-		std::cout << YELLOW;
-		RobotomyRequestForm Sec("Rob");
+	Form* rrf;
+	std::cout << GREEN << "Creating a form" << END << std::endl;
 
-		std::cout << Buros << std::endl;
-		std::cout << Sec << std::endl;
-		Buros.signForm(Sec);
-		Buros.executeForm(Sec);
-		std::cout << Sec << std::endl;
-	}
-		std::cout << END;
-		std::cout << std::endl;
-	{
-		std::cout << CYAN;
-		PresidentialPardonForm Third("President");
-		
-		std::cout << Buros << std::endl;
-		std::cout << Third << std::endl;
-		Buros.signForm(Third);
-		Buros.executeForm(Third);
-		std::cout << Third << std::endl;
-		std::cout << Buros << std::endl;
-	}
-		std::cout << END;
-		std::cout << std::endl;
-	{
-		std::cout << MAGENTA;
-		Intern someRandomIntern;
-		Form* rrf;
+	Bureaucrat Buros("B3", 2);
+	std::cout << GREEN << "Creating a grade " << Buros.getGrade() << " bureaucrate." << END << std::endl;
 
-		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+	Intern fakeIntern;
+	std::cout << RED << "Creating a fake intern" << END << std::endl;
+	Form *form;
+	std::cout << RED << "Creating another form" << END << std::endl;
+	try
+	{
+		std::cout << std::endl;
+		rrf = someRandomIntern.makeForm("robotomy request", "Shubby");
+		std::cout << std::endl;
+
+		std::cout << YELLOW << "Before signature :" << END << std::endl;
+		std::cout << *rrf << std::endl;
+		Buros.signForm(*rrf);
+		Buros.executeForm(*rrf);
+		std::cout << YELLOW << "After signature :" << END << std::endl;
+		std::cout << *rrf << std::endl;
+		std::cout << std::endl;
+
+
+		form = fakeIntern.makeForm("oh sh**", "Faking");
+		Buros.signForm(*form);
+		delete form;
+		delete rrf;
 	}
-		std::cout << END;
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl << std::endl			;
+	
+	}
 	return (0);
 }

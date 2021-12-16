@@ -16,8 +16,8 @@ class Bureaucrat
 		Bureaucrat();
 		Bureaucrat(std::string name, int grade);
 		Bureaucrat(const Bureaucrat&copy);
-		~Bureaucrat(){}
-	
+		virtual ~Bureaucrat(){}
+
 		Bureaucrat &operator =(const Bureaucrat &copy);
 	
 		class GradeTooLowException: public std::exception
@@ -38,6 +38,7 @@ class Bureaucrat
 				virtual ~GradeTooHighException() throw(){}
 				virtual const char* what() const throw(){ return _str.c_str(); }
 		};
+
 		virtual std::string	getName(void) const;
 		int					getGrade(void) const;
 		void				increaseGrade(void);
@@ -45,6 +46,7 @@ class Bureaucrat
 		void 				signForm(Form &form );
 		void 				executeForm( Form const & form );
 };
+
 std::ostream &operator<<( std::ostream & o, Bureaucrat &copy );
 
 #endif

@@ -26,14 +26,11 @@ RobotomyRequestForm &RobotomyRequestForm::operator =(const RobotomyRequestForm &
 
 void	RobotomyRequestForm::robotomize( void ) const
 {
-	int fifty;
-
 	srand(time(NULL));
-	fifty =	rand() % 2;
-	if (fifty == 0)
-		std::cout << "-" << _target << "- HAS BEEN SUCCESFULLY ROBOTOMIZED" << std::endl;
+	if ((rand() % 2) == 0)
+		std::cout << "[-" << _target << "- HAS BEEN SUCCESFULLY ROBOTOMIZED]" << std::endl;
 	else
-		std::cout << "CANNOT ROBOTOMIZE " << "-" << _target << "-" << std::endl;
+		std::cout << "[CANNOT ROBOTOMIZE] " << "-" << _target << "-" << std::endl;
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
@@ -41,7 +38,7 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 	if (!isSigned())
 		return ;
 	if (executor.getGrade() > _ok_toexec)
-		throw executor.GradeTooLowException();
+		throw GradeTooLowException();
 	else
 		robotomize();
 }

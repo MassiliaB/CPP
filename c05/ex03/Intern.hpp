@@ -17,11 +17,16 @@ class Intern
 		~Intern();
 
 		Intern &operator =(const Intern &copy);
-
-		Form  *makeForm(std::string form, std::string target);
-		ShrubberyCreationForm *shrubClass(void);
-		PresidentialPardonForm *presClass(void);
-		RobotomyRequestForm *robotClass(void);
+		class NoForm: public std::exception
+		{
+			private:
+				std::string	_str;
+			public:
+				NoForm()	throw(): _str("Form not found !"){}
+				virtual ~NoForm() throw(){}
+				virtual const char* what() const throw(){ return _str.c_str(); }
+		};
+		Form					*makeForm(std::string form, std::string target);
 };
 
 #endif

@@ -1,10 +1,5 @@
 # include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(): Form("Presidential form", 25, 5), _target("white house")
-{
-	return;
-}
-
 PresidentialPardonForm::PresidentialPardonForm( std::string target ): Form("Presidential form", 25, 5), _target(target)
 {
 	return;
@@ -34,12 +29,12 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 	if (!isSigned())
 		return ;
 	if (executor.getGrade() > this-> _ok_toexec)
-		throw executor.GradeTooLowException();
+		throw GradeTooLowException();
 	else
 		pardoned();
 }
 
 void	PresidentialPardonForm::pardoned( void ) const
 {
-	std::cout << "-" << this->_target << "- HAS BEEN PARDONED BY ZAFOD BEEBLEBROX" << std::endl;
+	std::cout << "-" << this->_target << "[- HAS BEEN PARDONED BY ZAFOD BEEBLEBROX]" << std::endl;
 }

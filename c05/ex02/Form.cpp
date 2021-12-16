@@ -1,5 +1,10 @@
 #include "Form.hpp"
 
+Form::Form(): _form("name"), _signed(false), _ok_tosign(150), _ok_toexec(150)
+{
+	return;
+}
+
 Form::Form(std::string name, int tosign, int toexec): _form(name), _signed(false), _ok_tosign(tosign), _ok_toexec(toexec)
 {
 	if (this->_ok_toexec < 1 || this->_ok_tosign < 1)
@@ -33,7 +38,6 @@ std::ostream &operator<<( std::ostream & o, Form &copy )
 	return o;
 }
 
-
 std::string Form::getName(void) const
 {
 	return this->_form;
@@ -60,13 +64,4 @@ int		Form::getSign(void) const
 int		Form::getExec(void) const
 {
 	return this->_ok_toexec;
-}
-void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
-{
-	if (!isSigned())
-		return ;
-	if (executor.getGrade() > this->_ok_toexec)
-		throw executor.GradeTooLowException();
-	else
-		create_file();
 }

@@ -12,12 +12,14 @@
 # define END "\033[0m"
 
 # include <iostream>
-# include <iomanip>
+# include <fstream>
+# include <stdlib.h>
+# include "Bureaucrat.hpp"
 
 class Bureaucrat;
 class Form
 {
-	private:
+	protected:
 		std::string	const	_form;
 		bool				_signed;
 		int	const			_ok_tosign;
@@ -26,7 +28,7 @@ class Form
 		Form();
 		Form(std::string name, int tosign, int toexec);
 		Form(const Form&copy);
-		~Form(){}
+		virtual ~Form(){}
 		
 		Form &operator =(const Form &copy);
 		std::string		getName(void) const;
