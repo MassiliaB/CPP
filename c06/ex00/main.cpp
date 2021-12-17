@@ -121,6 +121,8 @@ int is_digit_neg(std::string str)
 
 int are_displayable(std::string str)
 {
+	if (!str[0])
+		return (0);
 	for (int i = 0; str[i]; i++)
 	{
 		if (str[i] < 33 || str[i] > 126)
@@ -132,7 +134,7 @@ int are_displayable(std::string str)
 int to_int(std::string str, double num)
 {
 	std::cout << "int: ";
-	if (not_funny(str))
+	if (not_funny(str) || (num > 2147483647 || num < -2147483648))
 		return (error(1));
 	if (!is_digit_neg(str))
 		return (error(0));
@@ -145,17 +147,26 @@ int to_double(std::string str, double num)
 	std::string point;
 
 	std::cout << "double: ";
+	if (!is_digit_neg(str))
+		return (error(0));
+	if (num > 2.22507e-308 || num < 2.22507e-308)
+		return (error(1));
+	int i = 0;
+	for (; str[i] != 'f'; i++)
+		;
+	if (str[i] == 'f')
+		str[i] = 0;
 	if (not_funny(str) && (str == "-inf" || str == "+ inf" || str == "nan"))
 		std::cout << str;
 	else if (not_funny(str))
-		std::cout << str; //enlever le dernier f
+		std::cout << str;
 	else
 		std::cout << static_cast<float>(num);
-	int i = 0;
+	i = 0;
 	for (; str[i] != '.'; i++)
 		;
 	if (str[i] == '.' && str[i + 1] == '0' && !str[i + 2])
-		std::cout << ".0"; //enlever le dernier f 
+		std::cout << ".0";
 	std::cout << std::endl;
 	return (1);
 }
@@ -163,6 +174,10 @@ int to_double(std::string str, double num)
 int to_float(std::string str, double num)
 {
 	std::cout << "float: ";
+	if (!is_digit_neg(str))
+		return (error(0));
+	if (num > 3.40282e+038 || num < 1.17549e-038)
+		return (error(1));
 	if (not_funny(str))
 	{
 		if (str == "-inff" || str == "+ inff" || str == "nanf")
@@ -206,6 +221,8 @@ int main( int ac, char **av )
 	if (ac == 2)
 	{
 		double num = ft_atof(av[1]);
+		if (!are_displayable(av[1]))
+			return (error(2));
 		if (are_displayable(av[1]))
 			if (!is_digit_neg(av[1]) && !is_char(av[1]) && !not_funny(av[1]))
 				if (ft_strlen(av[1]) > 1)
