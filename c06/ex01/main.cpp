@@ -2,13 +2,13 @@
 
 void	Data::print( void )
 {
-	std::cout << "my data's nb " ;
+	std::cout << "my data's nb [" ;
 	std::cout << this->_nb ;
-	std::cout << "my data's float " ;
+	std::cout << "], my data's float [" ;
 	std::cout << this->_fnb ;
-	std::cout << ", my data's string " ;
+	std::cout << "], my data's string [" ;
 	std::cout << this->_str ;
-	std::cout << "." << std::endl;
+	std::cout << "]." << std::endl;
 }
 
 uintptr_t serialize(Data* ptr)
@@ -34,11 +34,11 @@ int main(void)
 	data.print();
 
 	data_ptr = serialize(&data);
-	std::cout << "After serialization: " << data_ptr << std::endl;
+	std::cout << "[" << data_ptr << "] After serialization: " << std::endl;
 
-	Data		*data2 = deserialize(data_ptr);
+	deserialize(data_ptr);
 	std::cout << "After deserialization: \n";
-	data2->print();
+	data.print();
 
 	return (0);
 }

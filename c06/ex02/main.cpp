@@ -33,10 +33,23 @@ void identify(Base *p)
 void identify(Base &p)
 {
 	try{
-		identify(&p);
+		p = dynamic_cast <A &> (p);
+		std::cout << "A" << std::endl;
 	}
 	catch (const std::exception &e){
-		std::cout << e.what() << '\n';
+		try {
+			p = dynamic_cast <B &> (p);
+			std::cout << "B" << std::endl;
+		}
+		catch (const std::exception &e){
+			try {
+				p = dynamic_cast <C &> (p);
+				std::cout << "C" << std::endl;
+			}
+			catch (const std::exception &e){
+				std::cout << e.what() << '\n';
+			}
+		}
 	}
 }
   
@@ -46,7 +59,7 @@ int main( void )
 	std::cout << "Unsing a pointer: " << std::endl;
 	identify(basing);
 	std::cout << "Unsing the reference: " << std::endl;
-	identify(basing);
+	identify(*basing);
 
 	delete basing;
 	return 0;
