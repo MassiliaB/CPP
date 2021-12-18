@@ -2,20 +2,24 @@
 
 int main(void)
 {
-	std::vector<int> tab(5,4);
-	tab.pop_back();
+	std::vector<int>	tab(5,4);
 	tab.push_back(6);
-	std::vector<int>::iterator it;
 
-	std::cout << "tab: ";
-	for(int i(0); tab[i]; ++i)
+	std::cout << "my vector tab: ";
+	for(int i(0); i < 6; ++i)
 		std::cout << "[" << tab[i] << "]";
 	std::cout << "\n";
+
+	std::vector<int>::iterator it;
+	std::cout << "Trying to find " << 4 << std::endl;
+	it = ::easyfind(tab, 4);
+	std::cout << "Iterator = "<< *it << std::endl;
 	try
 	{
-		std::cout << "trying to find " << 5 << std::endl;
-		it = ::easyfind(tab, 5);
-		std::cout << *it << std::endl;
+		std::vector<int>::iterator it2;
+		std::cout << "Trying to find " << 9 << std::endl;
+		it2 = ::easyfind<std::vector<int> >(tab, 9);
+		std::cout << *it2 << std::endl;
 	}
 	catch (std::exception &e)
 	{

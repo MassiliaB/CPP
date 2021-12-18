@@ -6,9 +6,9 @@
 # include <stdlib.h>
 # include <vector>
 # include <stdio.h>
-#include <algorithm>
-#include <exception>
- 
+# include <algorithm>
+# include <exception>
+
 class Error: public std::exception
 {
 	private:
@@ -19,16 +19,16 @@ class Error: public std::exception
 		virtual ~Error() throw(){}
 };
 
-template < typename T>
-typename T::iterator easyfind(T const &a, int i)
+template <typename T>
+typename T::iterator easyfind(T &a, int i)
 {
 	typename T::iterator it;
 
-  	it = find(a.begin(), a.end(), i);
+	it = std::find(a.begin(), a.end(), i);
 	if (it != a.end())
-		return (it);
+		return it;
 	else
-		throw (Error());
+		throw Error();
 }
 
 #endif
