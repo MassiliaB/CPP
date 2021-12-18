@@ -5,18 +5,17 @@
 # include <iomanip>
 # include <stdlib.h>
 
-
 template <typename T>
-void	iter(T array[], int len, void (*fct_ptr)(T &i))
+void	iter(T const array[], int const len, void (*fct_ptr)(T const &i))
 {
 	for (int i(0); i < len; i++)
 		fct_ptr(array[i]);
 }
 
 template <typename T>
-void	printarr(T &i)
+void	printarr(T const &i)
 {
-	std::cout << i << std::endl;
+	std::cout << "[" << i << "]";
 }
 
 # endif

@@ -6,7 +6,7 @@
 # include <stdlib.h>
 
 template <typename T>
-void	swap(T& a, T& b)
+void	swap(T &a, T &b)
 {
 	T	tmp;
 
@@ -15,14 +15,14 @@ void	swap(T& a, T& b)
 	b = tmp;
 }
 
-template <typename T1>
-T1	max(T1& a, T1& b)
+template <typename T>
+T	const &max(T const &a, T const &b)
 {
 	return ((a > b) ? a : b);
 }
 
-template <typename T2>
-T2		min(T2& a, T2& b)
+template <typename T>
+T	const &min(T const &a, T const &b)
 {
 	return ((a < b) ? a : b);
 }

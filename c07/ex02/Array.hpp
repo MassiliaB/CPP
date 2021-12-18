@@ -9,54 +9,48 @@ template <class T>
 class Array
 {
 	private:
-		int _size;
-		T *_array;
+		unsigned int	_size;
+		T			*_array;
 	public:
-		Array(): _size(1), _array(NULL)
+		Array(): _size(0), _array(NULL) {}
+		Array(unsigned int n): _size(n) { this->_array = new T[n]; }
+		Array(const Array &copy): _size(0), _array(NULL)
 		{
-			_array = new T[_size];
-			return ;
-		};
-		Array(unsigned int n): _size(n)
-		{
-			_array = new T[n];
-			//int *a = new int();
-			//std::cout << a<< std::endl;
-			return ;
-		};
-		Array(const Array&copy)
-		{
-			*this = copy;
-			return ;
-		};
-		~Array() { delete[] _array;};
+			if ( this != &copy )
+				*this = copy;
+		}
+		~Array() { 
+			if (this->_array)
+				delete[] this->_array;
+		}
 
+		class ErrorException: public std::exception
+		{
+			private:
+				std::string	_str;
+			public:
+				ErrorException()	throw(): _str("Error: trying to access element out of limits!"){}
+				virtual ~ErrorException()	throw(){}
+				virtual const char* what() const	throw(){ return _str.c_str(); }
+		};
 		Array &operator =(const Array &copy)
 		{
-			if (this != copy)
+			if ( this != &copy )
 			{
 				this->_size = copy.size();
-				_array = new T[_size];
-				for (int i = 0; i < _size; i++)
-					_array[i] = copy[i];
+				this->_array = new T[this->_size];
+				for (unsigned int i = 0; i < this->_size; i++)
+					this->_array[i] = copy._array[i];
 			}
-			return (*this);
+			return *this;
 		}
-		T &operator[](int i)
-		{
-			return (_array[i]);
-		}
-		int	size()
-		{
-			return (_size);
-		}
+		T	&operator[](unsigned int i) const { 
+			if ( i >= this->_size )
+				throw ErrorException();
+			return this->_array[i];
+		};
+		unsigned int	size() const { return this->_size; }
 };
 
-template <typename T>
-std::ostream &operator<<( std::ostream & o, Array<T> &copy )
-{
-	for (int i = 0; i < copy.size(); ++i)
-		o << "array[" << copy[i] << "]";
-	return (o);
-}
+
 #endif
