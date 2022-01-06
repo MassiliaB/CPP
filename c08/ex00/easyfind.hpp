@@ -4,8 +4,8 @@
 # include <iostream>
 # include <iomanip>
 # include <stdlib.h>
-# include <vector>
 # include <stdio.h>
+# include <vector>
 # include <algorithm>
 # include <exception>
 
@@ -20,12 +20,12 @@ class Error: public std::exception
 };
 
 template <typename T>
-typename T::iterator easyfind(T &a, int i)
+typename T::iterator easyfind(T &cont, int i)
 {
 	typename T::iterator it;
 
-	it = std::find(a.begin(), a.end(), i);
-	if (it != a.end())
+	it = std::find(cont.begin(), cont.end(), i);
+	if (it != cont.end())
 		return it;
 	else
 		throw Error();

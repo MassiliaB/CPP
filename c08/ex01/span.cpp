@@ -17,15 +17,9 @@ Span &Span::operator =(const Span &copy)
 	return *this;
 }
 
-int	Span::_error( std::string str )
-{
-	std::cout << str << std::endl;
-	return 0;
-}
-
 void Span::addNumber( unsigned int add )
 {
-	if (this->_nbElem + 1 >= this->_N)
+	if (this->_nbElem + 1 > this->_N)
 		throw Error();
 	else
 	{
@@ -37,15 +31,19 @@ void Span::addNumber( unsigned int add )
 int	Span::shortestSpan( void )
 {
 	std::vector<int>::iterator	it;
+	std::vector<int>::iterator	ite;
 	int							shortest;
 
 	if (this->_tab.empty() || this->_tab.size() == 1)
 		throw Error();
 	shortest = INT_MAX;
-	for ( it = this->_tab.begin(); it != this->_tab.end(); it++ )
+	for (it = this->_tab.begin(), ite = this->_tab.begin() + 1; it != this->_tab.end(); it++ )
 	{
-		if (std::max(*it, *(it)) - std::min(*it, *(it)) < shortest)
-			shortest = std::max (*it, *(it)) - std::min(*it, *(it));
+		for (; ite != this->_tab.end(); ite++ )
+		{
+			if (std::max(*it, *ite) - std::min(*it, *ite) < shortest)
+				shortest = std::max(*it, *ite) - std::min(*it, *ite);
+		}
 	}
 	return shortest;
 }
@@ -57,11 +55,6 @@ int	Span::longestSpan( void )
 
 	if (this->_tab.empty() || this->_tab.size() == 1)
 		throw Error();
-	longest = 0;
-	for( it = this->_tab.begin(); it != this->_tab.end(); it++ )
-	{
-		if (std::max(*it, *(it)) - std::min(*it, *(it)) > longest)
-			longest = std::max (*it, *(it)) - std::min(*it, *(it));
-	}
-	return (longest);
+	longest = *std::max_element(this->_tab.begin(), this->_tab.end()) - *std::min_element(this->_tab.begin(), this->_tab.end());
+	return longest;
 }

@@ -9,10 +9,9 @@ int main(void)
 	for(int i(0); i < 6; ++i)
 		std::cout << "[" << tab[i] << "]";
 	std::cout << "\n";
-
 	std::vector<int>::iterator it;
-	std::cout << "Trying to find " << 4 << std::endl;
-	it = ::easyfind(tab, 4);
+	std::cout << "Trying to find " << 6 << std::endl;
+	it = ::easyfind(tab, 6);
 	std::cout << "Iterator = "<< *it << std::endl;
 	try
 	{

@@ -4,6 +4,7 @@ int main()
 {
 	MutantStack<int> mstack;
 
+	std::cout << "MY MUTENT STACK" << std::endl;
 	std::cout << "Push 5 & 17" << std::endl;
 	mstack.push(5);
 	mstack.push(17);
@@ -26,5 +27,31 @@ int main()
 		++it;
 	}
 	std::stack<int> s(mstack);
+
+	MutantStack<std::string> smstack;
+
+	std::cout << "MY MUTENT STACK" << std::endl;
+	std::cout << "Push 5 & 17" << std::endl;
+	smstack.push("GAGA");
+	smstack.push("LOLA");
+	std::cout << "\x1B[31m" << "Whats on top ? " << "\033[0m" << smstack.top() << std::endl;
+	smstack.pop();
+	std::cout << "\x1B[31m" << "Size of the stack: " << "\033[0m" << smstack.size() << std::endl;
+	std::cout << "\x1B[31m" << "Pushing GAGA, GIGA, SAGA, MOGA, DIGA" << "\033[0m" << std::endl;
+	smstack.push("GIGA");
+	smstack.push("SAGA");
+	smstack.push("MOGA");
+	smstack.push("DIGA");
+
+	MutantStack<std::string>::iterator it1 = smstack.begin();
+	MutantStack<std::string>::iterator ite1 = smstack.end();
+	++it1;
+	--it1;
+	while (it1 != ite1)
+	{
+		std::cout << *it1 << std::endl;
+		++it1;
+	}
+
 	return 0;
 }

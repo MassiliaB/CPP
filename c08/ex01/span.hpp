@@ -13,24 +13,24 @@ class Span
 		unsigned int		_nbElem;
  		std::vector<int>	_tab;
 	public:
-		Span(): _N(5), _nbElem(0) {}
-		Span( unsigned int N ): _N(N), _nbElem(0) {}
+		Span(unsigned int N): _N(N), _nbElem(0) {}
 		Span(const Span&copy);
-		~Span() {}
+		~Span() { }
 		class Error: public std::exception
 		{
 			private:
 				std::string	_str;
 			public:
-				Error()	throw(): _str("Grade too low !"){}
+				Error()	throw(): _str("Error: Can't add more numbers!"){}
 				virtual ~Error() throw(){}
 				virtual const char* what() const throw(){ return _str.c_str(); }
 		};
 		Span	&operator =(const Span &copy);
-		void	addNumber(unsigned int add);
-		int		shortestSpan( void );
-		int		longestSpan( void );
-		int		_error( std::string str );
+		void				addNumber(unsigned int add);
+		int					shortestSpan( void );
+		int					longestSpan( void );
+		
+		std::vector<int>	getVec( void ) { return this->_tab; }
 };
 
 std::ostream &operator<<( std::ostream & o, Span &copy );
